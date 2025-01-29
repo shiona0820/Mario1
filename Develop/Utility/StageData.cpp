@@ -344,7 +344,7 @@ void StageData::Load()
 			if (*p == 'D')
 			{
 				//対象の文字があれば「２次元座標」と「画像情報」を覚える
-				int image_sora = rm->GetImages("Resource/images/yokodokan_left_up.png").at(0);
+				int image_sora = rm->GetImages("Resource/images/dokan_left_down.png").at(0);
 				DrawGraph((int)generate_location.x + velocity.x, (int)generate_location.y, image_sora, TRUE);
 			}
 			if (*p == 'e')

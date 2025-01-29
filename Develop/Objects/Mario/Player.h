@@ -138,14 +138,27 @@ public:
 
 private:
 	/// <summary>
-	/// 移動処理
+	/// 左右移動処理
 	/// </summary>
 	/// <param name="delta_second">1フレームあたりの時間</param>
 	void Movement(float delta_second);
+
 	/// <summary>
-	/// アニメーション制御
+	/// ジャンプ処理
 	/// </summary>
 	/// <param name="delta_second">1フレームあたりの時間</param>
-	void AnimationControl(float delta_second);
+	void JumpMoment(float delta_second);
+
+	/// <summary>
+	/// 左右移動アニメーション制御
+	/// </summary>
+	/// <param name="delta_second">1フレームあたりの時間</param>
+	void WalkAnimationControl(float delta_second);
+
+	/// <summary>
+	/// ジャンプするアニメーション制御
+	/// </summary>
+	/// <param name="delta_second">1フレームあたりの時間</param>
+	void JumpAnimationControl(float delta_second);
 
 };

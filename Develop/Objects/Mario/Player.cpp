@@ -4,7 +4,7 @@
 #include "DxLib.h"
 
 #define D_PLAYER_SPEED	(50.0f)
-#define D_GRAVITY (9.807f)   //重力加速ど
+#define D_GRAVITY (9.807f)   // 重力加速度
 
 
 Player* Player::instance = nullptr;
@@ -68,6 +68,9 @@ void Player::Initialize()
 		throw("マリオの画像がありません\n");
 	}
 
+	bool is_on_ground = true;   // 地面接地フラグ
+	float ground_y = 500.0f;    // 地面のY座標
+
 	////ジャンプ力の初期化
 	//this->player->jump_velocity.y -= 15.0f;
 	//jump_location = 0.0f;
@@ -108,7 +111,7 @@ void Player::Update(float delta_second)
 		// 移動処理
 		Movement(delta_second);
 		// アニメーション制御
-		AnimationControl(delta_second);
+		WalkAnimationControl(delta_second);
 		break;
 	case ePlayerState::DIE:
 		// 死亡中のアニメーション
@@ -257,7 +260,7 @@ void Player::Movement(float delta_second)
 		//SE鳴らす
 		if (Input->GetKeyDown(KEY_INPUT_SPACE))
 		{
-
+			velocity.y = -15.0f; // ジャンプの力
 			player_state = ePlayerState::Jump;
 
 			// ジャンプ中のアニメーション
@@ -276,6 +279,7 @@ void Player::Movement(float delta_second)
 
 			PlaySoundMem(jump_SE, DX_PLAYTYPE_BACK, TRUE);
 		}
+
 		player_state = ePlayerState::MOVE;
 	}
 
@@ -289,7 +293,7 @@ void Player::Movement(float delta_second)
 		//SE鳴らす
 		if (Input->GetKeyDown(KEY_INPUT_SPACE))
 		{
-
+			velocity.y = -15.0f; // ジャンプの力
 			player_state = ePlayerState::Jump;
 
 			// ジャンプ中のアニメーション
@@ -316,6 +320,8 @@ void Player::Movement(float delta_second)
 	//SE鳴らす
 	else if(Input->GetKey(KEY_INPUT_SPACE))
 	{
+		velocity.y = -15.0f; // ジャンプの力
+
 		// ジャンプ中のアニメーション
 		animation_time += delta_second;
 		if (animation_time >= (1.0f / 8.0f))
@@ -364,12 +370,28 @@ void Player::Movement(float delta_second)
 	}
 }
 
-
 /// <summary>
-/// アニメーション制御
+/// ジャンプ処理
 /// </summary>
 /// <param name="delta_second">1フレームあたりの時間</param>
-void Player::AnimationControl(float delta_second)
+/*void JumpMoment(float delta_second)
+{
+	InputManager* Input = InputManager::GetInstance();
+
+	if (Input->GetKey(KEY_INPUT_SPACE))
+	{
+		velocity.y = -15.0f;
+		player_state = ePlayerState::Jump;
+		is_on_ground = false;
+		PlaySoundMem(jump_SE, DX_PLAYTYPE_BACK, TRUE);
+	}
+}制作段階*/
+
+/// <summary>
+/// 左右移動アニメーション制御
+/// </summary>
+/// <param name="delta_second">1フレームあたりの時間</param>
+void Player::WalkAnimationControl(float delta_second)
 {
 	// 移動中のアニメーション
 	animation_time += delta_second;
@@ -384,7 +406,16 @@ void Player::AnimationControl(float delta_second)
 		// 画像の設定
 			image = move_animation[animation_num[animation_count]];
 	}
+
+
 }
+
+/// <summary>
+/// ジャンプするアニメーション制御
+/// </summary>
+// <param name="delta_second">1フレームあたりの時間</param>
+/*次回制作
+void JumpAnimationControl(float delta_second);*/
 
 Player* Player::GetInstance()
 {
