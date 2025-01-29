@@ -22,7 +22,7 @@ void StageData::Load()
 {
 	//ファイルを開く(.csv)
 	FILE* fp = NULL;
-	std::string file_name = "Resource/Map/StageMap.csv";
+	std::string file_name = "Resource/Map/UnderGroundMap.csv";
 	//指定したファイルを開く
 	errno_t result = fopen_s(&fp, file_name.c_str(), "r");
 
@@ -379,6 +379,13 @@ void StageData::Load()
 			{
 				//対象の文字があれば「２次元座標」と「画像情報」を覚える
 				int image_sora = rm->GetImages("Resource/images/Block/tika_floor.png").at(0);
+				DrawGraph((int)generate_location.x + velocity.x, (int)generate_location.y, image_sora, TRUE);
+			}
+			//地下の背景
+			if (*p == 'z')
+			{
+				//対象の文字があれば「２次元座標」と「画像情報」を覚える
+				int image_sora = rm->GetImages("Resource/images/underground backspace.png").at(0);
 				DrawGraph((int)generate_location.x + velocity.x, (int)generate_location.y, image_sora, TRUE);
 			}
 			//ちっちゃいやつ
