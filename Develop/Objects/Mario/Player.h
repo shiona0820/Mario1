@@ -68,10 +68,6 @@ private:
 public:
 	int screenoffset;   //スクロール用の原点用の変数
 
-	
-
-
-
 public:
 	ePlayerState player_state;				// プレイヤー状態
 

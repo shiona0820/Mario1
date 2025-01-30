@@ -6,7 +6,7 @@ class InGameScene : public SceneBase
 {
 private:
 	class Player* player;		// プレイヤー情報
-	class kuribo* Kuribo;
+	class kuribo* Kuribo;      //クリボーの情報
 
 
 	//int back_ground_image;		// 背景画像

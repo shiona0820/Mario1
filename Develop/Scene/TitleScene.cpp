@@ -57,16 +57,6 @@ void TitleScene::Draw() const
 	DrawGraph(480, 10, mario_time,TRUE);
 	DrawGraph(100, 10, mario_ui, TRUE);
 	DrawGraph(150, 25, mario_coin, TRUE);
-
-	//// 親クラスの描画処理を呼び出す
-	//__super::Draw();
-
-	//// UIの描画
-	//SetFontSize(60);
-	//DrawFormatString(120, 140, GetColor(255, 255, 0), "P A C - M A N");
-	//SetFontSize(40);
-	//DrawFormatString(10, 640, GetColor(255, 0, 0), "Space key pressed game start");
-	//SetFontSize(16);
 }
 
 void TitleScene::Finalize()

@@ -37,7 +37,8 @@ void InGameScene::Initialize()
 	player = CreateObject<Player>(Vector2D(100, 403));
 	//クリボーの表示
 	Kuribo = CreateObject<kuribo>(Vector2D(750, 403));
-	//genelate_location = Vector2D(700.0f, 528.0f);
+	//Kuribo = CreateObject<kuribo>(Vector2D(250, 403));
+	
 
 	//UIの読み込み
 	mario_ui = rm->GetImages("Resource/images/UI/name_mario.png")[0];
@@ -71,19 +72,6 @@ eSceneType InGameScene::Update(const float& delta_second)
 		//クリボー用
 		Kuribo->SetVelocity(player->GetVelocity().x);
 	}
-
-
-
-
-	////終盤画面スクロールを止める
-	//if (scroll <= 1000)
-	//{
-	//	scroll = 1000;
-
-	//	player->SetScrollEnd();
-	//}
-
-
 
 	// 親クラスの更新処理を呼び出す
 	return __super::Update(delta_second);
