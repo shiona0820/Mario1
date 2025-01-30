@@ -22,7 +22,7 @@ void StageData::Load()
 {
 	//ファイルを開く(.csv)
 	FILE* fp = NULL;
-	std::string file_name = "Resource/Map/UnderGroundMap.csv";
+	std::string file_name = "Resource/Map/StageMap.csv";
 	//指定したファイルを開く
 	errno_t result = fopen_s(&fp, file_name.c_str(), "r");
 
