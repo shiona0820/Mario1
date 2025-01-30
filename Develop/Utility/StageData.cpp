@@ -381,6 +381,13 @@ void StageData::Load()
 				int image_sora = rm->GetImages("Resource/images/Block/tika_floor.png").at(0);
 				DrawGraph((int)generate_location.x + velocity.x, (int)generate_location.y, image_sora, TRUE);
 			}
+			//地下の背景
+			//if (*p == 'z')
+			//{
+			//	//対象の文字があれば「２次元座標」と「画像情報」を覚える
+			//	int image_sora = rm->GetImages("Resource/images/underground backspace.png").at(0);
+			//	DrawGraph((int)generate_location.x + velocity.x, (int)generate_location.y, image_sora, TRUE);
+			//}
 			//ちっちゃいやつ
 			if (*p == 'V')
 			{
