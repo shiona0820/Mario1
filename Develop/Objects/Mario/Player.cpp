@@ -79,19 +79,18 @@ void Player::Initialize()
 }
 
 void Player::Update(float delta_second)
-{
-
+{	
 	//重力速度の計算
 	if (!is_on_ground) {
     velocity.y += D_GRAVITY * delta_second;
-}
-;
+    }
 
-	if (location.y >= ground_y) // 地面位置に達した場合
+	if (location.y + velocity.y * delta_second >= ground_y) // 地面位置に達した場合
 	{
 		location.y = ground_y;
 		velocity.y = 0.0f;
 		g_velocity = 0.0f;
+		is_on_ground = true;
 		player_state = ePlayerState::IDLE;
 	}
 
@@ -272,6 +271,7 @@ void Player::Movement(float delta_second)
 		if (Input->GetKey(KEY_INPUT_SPACE) && is_on_ground)
 		{
 			velocity.y = -5.0f;
+			JumpAnimationControl(delta_second);
 			player_state = ePlayerState::Jump;
 			is_on_ground = false;
 			PlaySoundMem(jump_SE, DX_PLAYTYPE_BACK, TRUE);
@@ -291,6 +291,7 @@ void Player::Movement(float delta_second)
 		if (Input->GetKey(KEY_INPUT_SPACE) && is_on_ground)
 		{
 			velocity.y = -5.0f;
+			JumpAnimationControl(delta_second);
 			player_state = ePlayerState::Jump;
 			is_on_ground = false;
 			PlaySoundMem(jump_SE, DX_PLAYTYPE_BACK, TRUE);
@@ -327,6 +328,13 @@ void Player::Movement(float delta_second)
 			location.x = 600.0f;
 		}
 	}
+
+	/**作成段階の画面外処理(y軸)if (location.y >= 500.0f && is_on_ground == true)
+	{
+		location.y = 500.0f;
+		velocity.y = 0.0f;
+		g_velocity = 0.0f;
+	}*/
 }
 
 /// <summary>
@@ -337,13 +345,13 @@ void Player::JumpMoment(float delta_second)
 {
 	InputManager* Input = InputManager::GetInstance();
 
-		if (Input->GetKey(KEY_INPUT_SPACE) && is_on_ground)
+		if (Input->GetKey(KEY_INPUT_SPACE) && is_on_ground == true)
 		{
-			velocity.y = -5.0f;
+			velocity.y = -4.0f;
+			JumpAnimationControl(delta_second);
 			player_state = ePlayerState::Jump;
 			is_on_ground = false;
 			PlaySoundMem(jump_SE, DX_PLAYTYPE_BACK, TRUE);
-			JumpAnimationControl(delta_second);
 		}
 }
 
@@ -376,22 +384,21 @@ void Player::WalkAnimationControl(float delta_second)
 // <param name="delta_second">1フレームあたりの時間</param>
 void Player::JumpAnimationControl(float delta_second)
 {
-	InputManager* Input = InputManager::GetInstance();
-	if (Input->GetKey(KEY_INPUT_SPACE)) {
-		// ジャンプ中のアニメーション
-		animation_time += delta_second;
-		if (animation_time >= (1.0f / 8.0f))
+	// ジャンプ中のアニメーション
+	animation_time += delta_second;
+	if (animation_time >= (1.0f / 8.0f))
+	{
+		animation_time = 0.0f;
+		animation_count++;
+		if (animation_count >= 2)
 		{
-			animation_time = 0.0f;
-			animation_count++;
-			if (animation_count >= 2)
-			{
-				animation_count = 0;
-			}
-			// 画像の設定
-			image = jump_animation[jump_animation_num[animation_count]];
+			animation_count = 0;
 		}
+		// 画像の設定
+		image = jump_animation[jump_animation_num[animation_count]];
 	}
+
+	PlaySoundMem(jump_SE, DX_PLAYTYPE_BACK, TRUE);
 }
 
 Player* Player::GetInstance()
