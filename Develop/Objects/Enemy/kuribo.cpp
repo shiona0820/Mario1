@@ -34,6 +34,8 @@ void kuribo::Initialize()
 
 	velocity.x = -0.1;
 
+	type = KURIBO;
+
 }
 
 

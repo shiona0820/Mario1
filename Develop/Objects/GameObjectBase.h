@@ -14,8 +14,9 @@ enum eMobilityType
 	Movable,		// 可動
 };
 
-enum {
-	Mario,
+enum eType{
+	MARIO,
+	KURIBO,
 };
  
 // ゲームオブジェクト基底クラス
@@ -30,12 +31,13 @@ protected:
 	eMobilityType		mobility;		// 可動性
 
 	Vector2D velocity;
+	Vector2D box_size;   //矩形の大きさ
 
 	double scale;   //大きさ
 	double radian;  //向き
-
 	bool flip_flag;   //反転処理
 	
+	int type;   //オブジェクトのタイプ
 
 
 public:
@@ -67,6 +69,9 @@ public:
 	 //</summary>
 	 //<param name="hit_object">当たったゲームオブジェクトのポインタ</param>
 	virtual void OnHitCollision(GameObjectBase* hit_object);
+
+	//当たり判定の大きさを取得する
+	Vector2D GetBoxSize() const;
 
 public:
 	// <summary>
@@ -104,5 +109,7 @@ public:
 	 </summary>
 	 <returns>可動性情報</returns>**/
 	const eMobilityType GetMobility() const;
+
+	int GeyType();   //自身のタイプの取得
 
 };

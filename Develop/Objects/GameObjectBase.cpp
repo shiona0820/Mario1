@@ -116,3 +116,13 @@ const eMobilityType GameObjectBase::GetMobility() const
 {
 	return mobility;
 }
+
+Vector2D GameObjectBase::GetBoxSize() const
+{
+	return box_size;
+}
+
+int GameObjectBase::GeyType()
+{
+	return this->type;
+}

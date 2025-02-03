@@ -68,9 +68,7 @@ void Player::Initialize()
 		throw("マリオの画像がありません\n");
 	}
 
-	////ジャンプ力の初期化
-	//this->player->jump_velocity.y -= 15.0f;
-	//jump_location = 0.0f;
+	type = MARIO;
 
 }
 

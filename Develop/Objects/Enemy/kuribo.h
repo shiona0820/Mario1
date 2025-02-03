@@ -14,7 +14,6 @@ class kuribo : public GameObject
 private:
 	std::vector<int> move_animation;   //移動のアニメーション
 
-
 	//アニメーション用
 	const int animation_num[2] = {0,1};
 	int animation_count;
