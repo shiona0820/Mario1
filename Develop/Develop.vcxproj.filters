@@ -50,6 +50,9 @@
     <ClCompile Include="HatenaBlock.cpp">
       <Filter>Objects\Gimmick\Block</Filter>
     </ClCompile>
+    <ClCompile Include="Floor.cpp">
+      <Filter>Objects\Gimmick\Block</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Objects\Enemy\nokonoko.h">
@@ -104,6 +107,9 @@
       <Filter>Objects\Gimmick\Block</Filter>
     </ClInclude>
     <ClInclude Include="HatenaBlock.h">
+      <Filter>Objects\Gimmick\Block</Filter>
+    </ClInclude>
+    <ClInclude Include="Floor.h">
       <Filter>Objects\Gimmick\Block</Filter>
     </ClInclude>
   </ItemGroup>

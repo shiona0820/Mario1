@@ -1,18 +1,15 @@
 #pragma once
 
-#include "../GameObject.h"
-#include "../../Utility/StageData.h"
+#include "../Develop/Objects/GameObject.h"
 
 class Dokan : public GameObject
 {
 public:
 	Dokan();
 	~Dokan();
-
 	virtual void Initialize() override;
-	virtual void Draw(const Vector2D& screen_offset) const override;
+	virtual void Update(float delta_second) override;
 	virtual void Finalize() override;
 
-	virtual void OnHitCollision(GameObject* hit_object) ;
 };
 
