@@ -110,6 +110,6 @@ public:
 	 <returns>可動性情報</returns>**/
 	const eMobilityType GetMobility() const;
 
-	int GeyType();   //自身のタイプの取得
+	int GetType();   //自身のタイプの取得
 
 };

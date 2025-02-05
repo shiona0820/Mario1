@@ -49,7 +49,7 @@ void Player::Initialize()
 	// 当たり判定の設定
 	collision.is_blocking = true;
 	collision.object_type = eObjectType::player;
-	collision.hit_object_type.push_back(eObjectType::enemy);
+	collision.hit_object_type.push_back(eObjectType::kuribo);
 	collision.hit_object_type.push_back(eObjectType::wall);
 	collision.hit_object_type.push_back(eObjectType::food);
 	collision.hit_object_type.push_back(eObjectType::power_food);
@@ -184,23 +184,10 @@ void Player::OnHitCollision(GameObjectBase* hit_object)
 	}
 
 	// 当たった、オブジェクトが通常餌だったら
-	if (hit_object->GetCollision().object_type == eObjectType::food)
+	if (hit_object->GetCollision().object_type == eObjectType::kuribo)
 	{
-		food_count++;
+		printf("クリボーにあたった\n");
 
-	}
-
-	// 当たった、オブジェクトがパワー餌だったら
-	if (hit_object->GetCollision().object_type == eObjectType::power_food)
-	{
-		food_count++;
-		is_power_up = true;
-	}
-
-	// 当たったオブジェクトが敵だったら
-	if (hit_object->GetCollision().object_type == eObjectType::enemy)
-	{
-		player_state = ePlayerState::DIE;
 	}
 
 }

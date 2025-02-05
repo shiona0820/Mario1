@@ -122,7 +122,7 @@ Vector2D GameObjectBase::GetBoxSize() const
 	return box_size;
 }
 
-int GameObjectBase::GeyType()
+int GameObjectBase::GetType()
 {
 	return this->type;
 }

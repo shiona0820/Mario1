@@ -6,9 +6,11 @@
 // オブジェクトタイプ
 enum class eObjectType : unsigned char
 {
-	none,
-	player,
-	enemy,
+	block,   //ノーマルブロック
+	player,  //プレイヤー（マリオ）
+	kuribo,   //敵（クリボー）
+	nokonoko,//敵（のこのこ）
+
 	wall,
 	food,
 	power_food,
@@ -28,7 +30,7 @@ public:
 public:
 	CapsuleCollision() :
 		is_blocking(false),
-		object_type(eObjectType::none),
+		object_type(eObjectType::block),
 		hit_object_type(),
 		radius(0.0f)
 	{
