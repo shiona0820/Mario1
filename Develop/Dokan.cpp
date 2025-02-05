@@ -13,8 +13,7 @@ Dokan::~Dokan()
 
 void Dokan::Initialize()
 {
-	// “–‚½‚è”»’è‚Ìİ’è
-	box_size = 32.0f;
+	
 }
 
 void Dokan::Draw(const Vector2D& screen_offset) const

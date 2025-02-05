@@ -133,6 +133,8 @@
   <ItemGroup>
     <ClCompile Include="AppMain.cpp" />
     <ClCompile Include="Dokan.cpp" />
+    <ClCompile Include="HatenaBlock.cpp" />
+    <ClCompile Include="NormalBlock.cpp" />
     <ClCompile Include="Objects\Enemy\kuribo.cpp" />
     <ClCompile Include="Objects\Enemy\nokonoko.cpp" />
     <ClCompile Include="Objects\GameObjectBase.cpp" />
@@ -149,6 +151,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Dokan.h" />
+    <ClInclude Include="HatenaBlock.h" />
+    <ClInclude Include="NormalBlock.h" />
     <ClInclude Include="Objects\Enemy\kuribo.h" />
     <ClInclude Include="Objects\Enemy\nokonoko.h" />
     <ClInclude Include="Objects\GameObject.h" />
