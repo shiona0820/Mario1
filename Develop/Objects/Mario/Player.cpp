@@ -329,11 +329,10 @@ void Player::Movement(float delta_second)
 		}
 	}
 
-	/**ì¬’iŠK‚Ì‰æ–ÊŠOˆ—(yŽ²)if (location.y >= 500.0f && is_on_ground == true)
+	/*/ì¬’iŠK‚Ì‰æ–ÊŠOˆ—(yŽ²)
+	if (location.y >= 500.0f && is_on_ground)
 	{
 		location.y = 500.0f;
-		velocity.y = 0.0f;
-		g_velocity = 0.0f;
 	}*/
 }
 
@@ -352,6 +351,11 @@ void Player::JumpMoment(float delta_second)
 			player_state = ePlayerState::Jump;
 			is_on_ground = false;
 			PlaySoundMem(jump_SE, DX_PLAYTYPE_BACK, TRUE);
+		}
+
+		else if (location.y >= 200.0f && is_on_ground == false)
+		{
+			is_on_ground = true;
 		}
 }
 
