@@ -10,6 +10,5 @@ public:
 	virtual void Initialize() override;
 	virtual void Update(float delta_second) override;
 	virtual void Finalize() override;
-
 };
 
