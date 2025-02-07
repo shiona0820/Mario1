@@ -26,8 +26,3 @@ void Hatena::Finalize()
 
 }
 
-void OnHitCollision(GameObject* hit_object)
-{
-	//もしマリオに当たったら、キノコを出す
-
-}
