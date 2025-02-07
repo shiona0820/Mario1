@@ -50,6 +50,11 @@ private:
 	bool is_power_up;						// パワー餌を食べたか？
 	bool is_destroy;						// 死んだ状態になったか？
 
+
+	//試し用変数
+	Vector2D player_position; // プレイヤーの位置
+	Vector2D player_velocity; // プレイヤーの速度
+	float scroll_offset;      // スクロールオフセット
 	bool is_on_ground;                      // 地面接地フラグ
 	float ground_y;                        // 地面のY座標
 

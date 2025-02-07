@@ -1,108 +1,70 @@
 #pragma once
 
 #include "../Utility/Vector2D.h"
-#include "../Utility/Collision.h"
+#include "../RectCollision.h"  // RectCollisionを使う
 
-#define D_OBJECT_SIZE	(24.0f)			// 壁のサイズ
+#define D_OBJECT_SIZE (24.0f)  // オブジェクトのデフォルトサイズ
 
-// <summary>
- //可動性の種類
- //</summary>
+// 可動性の種類
 enum eMobilityType
 {
-	Stationary,		// 固定
-	Movable,		// 可動
+    Stationary,  // 固定オブジェクト
+    Movable,     // 可動オブジェクト
 };
 
-enum {
-	Mario,
-};
- 
 // ゲームオブジェクト基底クラス
 class GameObjectBase
 {
 protected:
-	class SceneBase* owner_scene;	// 所有するシーン情報
-	Vector2D			location;		// 位置座標
-	CapsuleCollision	collision;		// 当たり判定情報
-	int					image;			// 画像情報
-	int					z_layer;		// レイヤー情報
-	eMobilityType		mobility;		// 可動性
-
-	Vector2D velocity;
-
-	double scale;   //大きさ
-	double radian;  //向き
-
-	bool flip_flag;   //反転処理
-	
-
+    class SceneBase* owner_scene;  // 所有するシーン情報
+    Vector2D location;             // 位置座標
+    Vector2D box_size;             // 仮当たり判定用box
+    RectCollision collision;       // 当たり判定情報
+    int image;                     // 画像情報
+    int z_layer;                   // レイヤー情報
+    eMobilityType mobility;        // 可動性情報
+    Vector2D velocity;             // 移動速度
+    double scale;                  // 大きさ
+    double radian;                 // 回転角度
+    bool flip_flag;                // 画像反転フラグ
 
 public:
-	GameObjectBase();
-	virtual ~GameObjectBase();
+    GameObjectBase();
+    virtual ~GameObjectBase();
 
-	// <summary>
-	 //初期化処理
-	 //</summary>
-	virtual void Initialize();
-	 //<summary>
-	 //更新処理
-	 //</summary>
-	 //<param name="delta_second">1フレームあたりの時間</param>
-	virtual void Update(float delta_second);
-	// <summary>
-	 //描画処理
-	// </summary>
-	 //<param name="screen_offset">オフセット値</param>
-	virtual void Draw(const Vector2D& screen_offset) const;
-	// <summary>
-	 //終了時処理
-	 //</summary>
-	virtual void Finalize();
+    // 初期化処理
+    virtual void Initialize();
 
-public:
-	 //<summary>
-	 //当たり判定通知処理
-	 //</summary>
-	 //<param name="hit_object">当たったゲームオブジェクトのポインタ</param>
-	virtual void OnHitCollision(GameObjectBase* hit_object);
+    // 更新処理（時間差分を受け取る）
+    virtual void Update(float delta_second);
 
-public:
-	// <summary>
-	// 所有シーン情報の設定
-	// </summary>
-	// <param name="scene">所有シーン情報</param>
-	void SetOwnerScene(class SceneBase* scene);
+    // 描画処理（スクリーンオフセットに基づいて描画）
+    virtual void Draw(const Vector2D& screen_offset) const;
 
-	// <summary>
-	 //位置座標取得処理
-	 //</summary>
-	// <returns>位置座標情報</returns>
-	const Vector2D& GetLocation() const;
+    // 終了時処理
+    virtual void Finalize();
 
-	// <summary>
-	 //位置情報変更処理
-	// </summary>
-	// <param name="location">変更したい位置情報</param>
-	void SetLocation(const Vector2D& location);
+    // 当たり判定通知処理
+    virtual void OnHitCollision(GameObjectBase* hit_object);
 
-	/**<summary>
-	 当たり判定取得処理
-	 </summary>
-	 <returns>当たり判定情報</returns>**/
-	CapsuleCollision GetCollision() const;
+    // 所有シーン情報の設定
+    void SetOwnerScene(class SceneBase* scene);
 
-	 /**<summary>
-	 Ｚレイヤー情報取得処理
-	 </summary>
-	 <returns>Ｚレイヤー情報</returns>**/
-	const int GetZLayer() const;
+    // 位置座標取得
+    const Vector2D& GetLocation() const;
 
-	 /**<summary>
-	 可動性情報の取得処理
-	 </summary>
-	 <returns>可動性情報</returns>**/
-	const eMobilityType GetMobility() const;
+    // 位置座標変更
+    void SetLocation(const Vector2D& location);
 
+    // 当たり判定情報の取得
+    RectCollision GetCollision() const;
+
+    // 矩形当たり判定情報の設定
+    void SetCollisionRect(float width, float height);
+
+    // Zレイヤー情報取得
+    const int GetZLayer() const;
+
+    // 可動性情報の取得
+    const eMobilityType GetMobility() const;
 };

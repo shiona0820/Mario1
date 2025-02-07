@@ -52,11 +52,9 @@ void Player::Initialize()
 	collision.is_blocking = true;
 	collision.object_type = eObjectType::player;
 	collision.hit_object_type.push_back(eObjectType::enemy);
-	collision.hit_object_type.push_back(eObjectType::wall);
-	collision.hit_object_type.push_back(eObjectType::food);
-	collision.hit_object_type.push_back(eObjectType::power_food);
-	collision.hit_object_type.push_back(eObjectType::special);
-	collision.radius = (D_OBJECT_SIZE - 1.0f) / 2.0f;
+	collision.hit_object_type.push_back(eObjectType::block);
+	collision.hit_object_type.push_back(eObjectType::item);
+	//collision.radius = (D_OBJECT_SIZE - 1.0f) / 2.0f;
 	// レイヤーの設定
 	z_layer = 5;
 
@@ -70,7 +68,15 @@ void Player::Initialize()
 		throw("マリオの画像がありません\n");
 	}
 
+	// お試し用(変数)
+	// プレイヤー初期位置と速度
+	player_position = { 500.0f, 500.0f };
+	player_velocity = { 0.0f, 0.0f };
+	is_on_ground = true;
+	// スクロール初期化
+	scroll_offset = 0.0f;
 	ground_y = 500.0f;    // 地面のY座標
+	//ここまで
 
 	////ジャンプ力の初期化
 	//this->player->jump_velocity.y -= 15.0f;
@@ -161,6 +167,7 @@ void Player::Update(float delta_second)
 void Player::Draw(const Vector2D& screen_offset) const
 {
 	__super::Draw(screen_offset);
+
 }
 
 void Player::Finalize()
@@ -176,7 +183,7 @@ void Player::Finalize()
 /// <param name="hit_object">当たったゲームオブジェクトのポインタ</param>
 void Player::OnHitCollision(GameObjectBase* hit_object)
 {
-	// 当たった、オブジェクトが壁だったら
+	/*/ 当たった、オブジェクトが壁だったら
 	if (hit_object->GetCollision().object_type == eObjectType::wall)
 	{
 		// 当たり判定情報を取得して、カプセルがある位置を求める
@@ -210,12 +217,24 @@ void Player::OnHitCollision(GameObjectBase* hit_object)
 	{
 		food_count++;
 		is_power_up = true;
-	}
+	}*/
 
 	// 当たったオブジェクトが敵だったら
 	if (hit_object->GetCollision().object_type == eObjectType::enemy)
 	{
 		player_state = ePlayerState::DIE;
+	}
+
+	// 当たったオブジェクトがアイテムだったら
+	if (hit_object->GetCollision().object_type == eObjectType::item)
+	{
+		//player_state = ePlayerState::DIE;
+	}
+
+	// 当たったオブジェクトがブロックだったら
+	if (hit_object->GetCollision().object_type == eObjectType::block)
+	{
+		//player_state = ePlayerState::DIE;
 	}
 
 }
@@ -328,6 +347,19 @@ void Player::Movement(float delta_second)
 			location.x = 600.0f;
 		}
 	}
+
+	/*/追加とテスト用
+	// 重力処理
+	player_velocity.y += 5.0f; // 重力加速度を加える
+	if (player_velocity.y > 10.0f) player_velocity.y = 10.0f; // 最大落下速度制限
+
+	// 地面との衝突判定
+	if (player_position.y >= ground_y - 32) {
+		player_position.y = ground_y - 32; // 地面に固定
+		player_velocity.y = 0.0f;          // 縦方向速度をリセット
+		is_on_ground = true;               // 地面にいる状態にする
+	}
+	//ここまで*/
 
 	/*/作成段階の画面外処理(y軸)
 	if (location.y >= 500.0f && is_on_ground)

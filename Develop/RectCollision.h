@@ -2,6 +2,7 @@
 
 #include "../Develop/Utility/Vector2D.h"
 #include <vector>
+#include <algorithm>  // for std::max, std::min
 
 // オブジェクトタイプの定義
 enum class eObjectType : unsigned char
@@ -9,7 +10,7 @@ enum class eObjectType : unsigned char
     none,
     player,
     enemy,
-    wall,
+    block,
     item,
 };
 
@@ -23,28 +24,18 @@ public:
     Vector2D top_left;                            // 矩形の左上の座標
     Vector2D bottom_right;                        // 矩形の右下の座標
 
-    RectCollision() :
-        is_blocking(false),
-        object_type(eObjectType::none),
-        top_left(0.0f, 0.0f),
-        bottom_right(0.0f, 0.0f) {
-    }
-
-    ~RectCollision() = default;
+    RectCollision();
+    ~RectCollision();
 
     // 当たり判定対象確認処理
     bool IsCheckHitTarget(eObjectType hit_object) const;
 
     // 矩形の幅と高さを取得
-    float GetWidth() const { return bottom_right.x - top_left.x; }
-    float GetHeight() const { return bottom_right.y - top_left.y; }
+    float GetWidth() const;
+    float GetHeight() const;
 
     // 矩形の位置を更新する
-    void SetPosition(const Vector2D& position, float width, float height)
-    {
-        top_left = position;
-        bottom_right = Vector2D(position.x + width, position.y + height);
-    }
+    void SetPosition(const Vector2D& position, float width, float height);
 };
 
 // 矩形同士の当たり判定確認関数
