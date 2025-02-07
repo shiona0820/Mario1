@@ -3,7 +3,11 @@
 #include "../Utility/ResourceManager.h"
 #include "DxLib.h"
 
-TitleScene::TitleScene()
+TitleScene::TitleScene() :
+	mario_coin_ui(),
+	kakeru_ui(),
+	coin_num_min(),
+	coin_num_sec()
 {
 	back_ground_image = NULL;
 }
@@ -23,8 +27,13 @@ void TitleScene::Initialize()
 	mario_ui = rm->GetImages("Resource/images/UI/name_mario.png")[0];
 	mario_time = rm->GetImages("Resource/images/UI/time.png")[0];
 	mario_world = rm->GetImages("Resource/images/UI/world.png")[0];
-	mario_coin = rm->GetImages("Resource/images/UI/uicoin.png")[0];
+	mario_coin_ui = rm->GetImages("Resource/images/Item/coin.png",4,4,1,32,32);
+	kakeru_ui = rm->GetImages("Resource/images/Ui/num.png", 14, 14, 1, 16, 16);
 
+	//同じ一枚の画像を入れる
+	//コイン取得数
+	coin_num_min = kakeru_ui;
+	coin_num_sec = kakeru_ui;
 }
 
 eSceneType TitleScene::Update(const float& delta_second)
@@ -55,8 +64,12 @@ void TitleScene::Draw() const
 	//タイトルUIの描画
 	DrawGraph(340, 10, mario_world,TRUE);
 	DrawGraph(480, 10, mario_time,TRUE);
-	DrawGraph(100, 10, mario_ui, TRUE);
-	DrawGraph(150, 25, mario_coin, TRUE);
+	DrawGraph(50, 10, mario_ui, TRUE);
+	//コインの画像
+	DrawGraph(160, 25, mario_coin_ui[0], TRUE);
+	DrawGraph(190, 33, kakeru_ui[11], TRUE);
+	DrawGraph(210, 34, coin_num_min[0], TRUE);   //コイン10の位
+	DrawGraph(230, 34, coin_num_sec[0], TRUE);   //コイン１の位
 }
 
 void TitleScene::Finalize()

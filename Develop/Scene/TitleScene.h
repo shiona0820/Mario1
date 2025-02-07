@@ -13,9 +13,10 @@ private:
 	int mario_ui;
 	int mario_world;
 	int mario_time;
-	int mario_coin;
-
-	int coin_ui;
+	std::vector<int> mario_coin_ui;   //コイン画像
+	std::vector<int> kakeru_ui;       //コイン横の×の画像
+	std::vector<int>coin_num_min;         //コイン取得数の画像十の位
+	std::vector<int>coin_num_sec;         //コイン取得数の画像一の位
 
 public:
 	TitleScene();

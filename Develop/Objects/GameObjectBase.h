@@ -38,7 +38,7 @@ protected:
 	bool flip_flag;   //反転処理
 	
 	int type;   //オブジェクトのタイプ
-
+	int coniUi;
 
 public:
 	GameObjectBase();
