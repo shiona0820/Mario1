@@ -348,12 +348,12 @@ void Player::Movement(float delta_second)
 		}
 	}
 
-	/*/追加とテスト用
+	//追加とテスト用
 	// 重力処理
 	player_velocity.y += 5.0f; // 重力加速度を加える
 	if (player_velocity.y > 10.0f) player_velocity.y = 10.0f; // 最大落下速度制限
 
-	// 地面との衝突判定
+	/*/ 地面との衝突判定
 	if (player_position.y >= ground_y - 32) {
 		player_position.y = ground_y - 32; // 地面に固定
 		player_velocity.y = 0.0f;          // 縦方向速度をリセット
