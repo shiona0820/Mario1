@@ -45,13 +45,16 @@
       <Filter>Objects\Gimmick</Filter>
     </ClCompile>
     <ClCompile Include="NormalBlock.cpp">
-      <Filter>Objects\Gimmick\Block</Filter>
+      <Filter>Objects\Block</Filter>
     </ClCompile>
     <ClCompile Include="HatenaBlock.cpp">
-      <Filter>Objects\Gimmick\Block</Filter>
+      <Filter>Objects\Block</Filter>
     </ClCompile>
     <ClCompile Include="Floor.cpp">
-      <Filter>Objects\Gimmick\Block</Filter>
+      <Filter>Objects\Block</Filter>
+    </ClCompile>
+    <ClCompile Include="RectCollision.cpp">
+      <Filter>Utility</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -104,13 +107,16 @@
       <Filter>Objects\Gimmick</Filter>
     </ClInclude>
     <ClInclude Include="NormalBlock.h">
-      <Filter>Objects\Gimmick\Block</Filter>
+      <Filter>Objects\Block</Filter>
     </ClInclude>
     <ClInclude Include="HatenaBlock.h">
-      <Filter>Objects\Gimmick\Block</Filter>
+      <Filter>Objects\Block</Filter>
     </ClInclude>
     <ClInclude Include="Floor.h">
-      <Filter>Objects\Gimmick\Block</Filter>
+      <Filter>Objects\Block</Filter>
+    </ClInclude>
+    <ClInclude Include="RectCollision.h">
+      <Filter>Utility</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -132,7 +138,7 @@
     <Filter Include="Objects\Gimmick">
       <UniqueIdentifier>{4a444f66-d3b6-4b3d-a210-080659a9535e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Objects\Gimmick\Block">
+    <Filter Include="Objects\Block">
       <UniqueIdentifier>{f198e2ca-193c-48a0-b544-6530abedb1f9}</UniqueIdentifier>
     </Filter>
   </ItemGroup>

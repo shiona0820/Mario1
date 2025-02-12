@@ -4,6 +4,11 @@
 
 class Hatena : public GameObject
 {
+private:
+	int animation[4];
+	int animation_count;
+	float animation_time;
+
 public:
 	Hatena();
 	~Hatena();
@@ -12,5 +17,8 @@ public:
 	virtual void Finalize() override;
 
 	virtual void OnHitCollision(GameObject* hit_object);
+
+private:
+	void AnimationControl(float delta_second);
 };
 

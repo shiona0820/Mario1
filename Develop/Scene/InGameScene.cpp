@@ -7,6 +7,7 @@
 
 #include "../Objects/Mario/Player.h"
 #include "../Objects/Enemy/kuribo.h"
+#include "../HatenaBlock.h"
 
 #include "DxLib.h"
 #include <fstream>
@@ -32,6 +33,8 @@ InGameScene::~InGameScene()
 
 void InGameScene::Initialize()
 {
+	// マップデータ読み込み生成処理
+	LoadStageMapCSV();
 
 	ResourceManager* rm = ResourceManager::GetInstance();
 	//メインBGMの読み込み
@@ -120,4 +123,55 @@ void InGameScene::Finalize()
 const eSceneType InGameScene::GetNowSceneType() const
 {
 	return eSceneType ::in_game;
+}
+
+/// <summary>
+/// ステージマップ（壁）読み込み処理
+/// </summary>
+void InGameScene::LoadStageMapCSV()
+{
+	// 読み込むファイル名
+	std::string file_name = "Resource/Map/StageMap.csv";
+	// 指定ファイルを読み込む
+	std::ifstream ifs(file_name);
+
+	// エラーチェック
+	if (ifs.fail())
+	{
+		throw (file_name + "が開けません\n");
+	}
+
+	// ファイルから1行ずつ読み込む
+	std::string line;
+	while (std::getline(ifs, line))
+	{
+		// 文字列を書式指定で分解して値を各変数に格納する
+		char mode = NULL;		// 生成するオブジェクトモード
+		int x_size = NULL;		// 生成する数（横）
+		int y_size = NULL;		// 生成する数（縦）
+		int spos_x = 0;			// 生成位置情報（横）
+		int spos_y = 0;			// 生成位置情報（縦）
+		sscanf_s(
+			line.c_str(),
+			"%c,%d,%d,%d,%d",
+			&mode, (unsigned int)sizeof(mode),
+			&x_size, &y_size,
+			&spos_x, &spos_y
+		);
+
+		// モードによって、生成するオブジェクトを変える
+		Vector2D generate_location;		// 生成位置の情報
+		switch (mode)
+		{
+		case 'H':
+			//ハテナブロック
+			generate_location = (Vector2D((float)(spos_x - 1), (float)(spos_y - 1)) * D_OBJECT_SIZE) + (D_OBJECT_SIZE / 2.0f);
+			CreateObject<Hatena>(generate_location);
+			break;
+
+			//上記以外
+		default:
+			break;
+		}
+	}
 }

@@ -34,5 +34,10 @@ public:
 	// 現在のシーンタイプ情報を取得する
 	virtual const eSceneType GetNowSceneType() const override;
 
+private:
+	/// <summary>
+	/// ステージマップ（壁）読み込み処理
+	/// </summary>
+	void LoadStageMapCSV();
 };
 

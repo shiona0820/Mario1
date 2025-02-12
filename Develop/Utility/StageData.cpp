@@ -194,12 +194,12 @@ void StageData::Load()
 			}
 
 			//ハテナブロック
-			if (*p == 'H')
-			{
-				//対象の文字があれば「２次元座標」と「画像情報」を覚える
-				int image_sora = rm->GetImages("Resource/images/Block/hatena.png").at(0);
-				DrawGraph((int)generate_location.x + velocity.x, (int)generate_location.y, image_sora, TRUE);
-			}
+			//if (*p == 'H')
+			//{
+			//	//対象の文字があれば「２次元座標」と「画像情報」を覚える
+			//	int image_sora = rm->GetImages("Resource/images/Block/hatena.png").at(0);
+			//	DrawGraph((int)generate_location.x + velocity.x, (int)generate_location.y, image_sora, TRUE);
+			//}
 
 			//クリボー
 			if (*p == 'C')
