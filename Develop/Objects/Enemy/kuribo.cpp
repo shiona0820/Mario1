@@ -1,6 +1,7 @@
 #include "kuribo.h"
 
 #include "../../Utility/ResourceManager.h"
+#include "../Mario/Player.h"
 
 #include "DxLib.h"
 
@@ -26,6 +27,12 @@ void kuribo::Initialize()
 
 	image = move_animation[0];
 
+	// 当たり判定の設定
+	collision.is_blocking = true;
+	collision.object_type = eObjectType::enemy;
+	collision.hit_object_type.push_back(eObjectType::player);
+	collision.hit_object_type.push_back(eObjectType::block);
+
 	//エラーチェック
 	if (image == -1)
 	{
@@ -49,6 +56,7 @@ void kuribo::Update(float delta_second)
 		AnimeCount(delta_second);
 		break;
 	case STEP:
+		
 		break;
 	default:
 		break;
@@ -65,6 +73,17 @@ void kuribo::Finalize()
 {
 
 }
+
+void kuribo::OnHitCollision(GameObject* hit_object)
+{
+
+	if (hit_object->GetCollision().object_type == eObjectType::player)
+	{
+		DestroyObject(this);
+	}
+
+}
+
 
 void kuribo::AnimeCount(float delta_second)
 {

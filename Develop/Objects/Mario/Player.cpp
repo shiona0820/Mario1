@@ -228,6 +228,7 @@ void Player::OnHitCollision(GameObjectBase* hit_object)
 	// 当たったオブジェクトが土管だったら
 	// 当たったオブジェクトがゴールフラッグなら
 
+	
 }
 
 /// <summary>
