@@ -225,17 +225,8 @@ void Player::OnHitCollision(GameObjectBase* hit_object)
 		player_state = ePlayerState::DIE;
 	}
 
-	// 当たったオブジェクトがアイテムだったら
-	if (hit_object->GetCollision().object_type == eObjectType::item)
-	{
-		//player_state = ePlayerState::DIE;
-	}
-
-	// 当たったオブジェクトがブロックだったら
-	if (hit_object->GetCollision().object_type == eObjectType::block)
-	{
-		//player_state = ePlayerState::DIE;
-	}
+	// 当たったオブジェクトが土管だったら
+	// 当たったオブジェクトがゴールフラッグなら
 
 }
 

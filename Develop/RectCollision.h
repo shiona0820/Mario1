@@ -12,6 +12,8 @@ enum class eObjectType : unsigned char
     enemy,
     block,
     item,
+    flag,
+    dokan,
 };
 
 // 矩形コリジョン構造体
