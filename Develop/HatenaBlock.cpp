@@ -26,3 +26,9 @@ void Hatena::Finalize()
 
 }
 
+void Hatena::OnHitCollision(GameObject* hit_object)
+{
+	//マリオに叩かれると、キノコを出し、
+	//空ブロックになる
+
+}

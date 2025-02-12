@@ -26,7 +26,7 @@ void Dokan::Finalize()
 
 }
 
-void OnHitCollision(GameObject* hit_object)
+void Dokan::OnHitCollision(GameObject* hit_object)
 {
 	//もし4つ目の土管に入ったら、地下マップへ遷移する
 
