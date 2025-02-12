@@ -1,36 +1,96 @@
-//#include "coin.h"
-//
-//#include "../../Utility/ResourceManager.h"
-//#include "../../Utility/StageData.h"
-//#include "../../Objects/Mario/Player.h"
-//#include "DxLib.h"
-//
-//coin::coin() :
-//	mario_coin_ui()
-//{
-//}
-//
-//coin::~coin()
-//{
-//}
-//
-//void coin::Initialize()
-//{
-//	ResourceManager* rm = ResourceManager::GetInstance();
-//	mario_coin_ui = rm->GetImages("Resource/images/Item/coin.png", 4, 4, 1, 32, 32);
-//
-//}
-//
-//void coin::Update(float delta_second)
-//{
-//}
-//
-//void coin::Draw(const Vector2D& screen_offset) const
-//{
-//	//コインの画像
-//	DrawGraph(120, 25, mario_coin_ui, TRUE);
-//}
-//
-//void coin::Finalize()
-//{
-//}
+#include "coin.h"
+
+#include "../../Utility/ResourceManager.h"
+
+#include "DxLib.h"
+
+coin* coin::instance = nullptr;
+
+coin::coin() :
+	coin_animation()
+{
+	coin_sound = NULL;
+}
+
+coin::~coin()
+{
+
+}
+
+void coin::Initialize()
+{
+	//アニメーション画像の読み込み
+	ResourceManager* rm = ResourceManager::GetInstance();
+	coin_animation = rm->GetImages("Resource/images/Item/coin.png", 4, 4, 1, 32, 32);
+	//コインseの読み込み
+	coin_sound = rm->GetSounds("Resource/Sounds/SE_CoinPickUp.wav");
+
+	image = coin_animation[0];
+
+	//エラーチェック
+	if (image == -1)
+	{
+		throw("coinの画像がありません\n");
+	}
+
+	type = COIN;
+
+}
+
+void coin::Update(float delta_second)
+{
+	
+
+
+}
+
+void coin::Draw(const Vector2D& screen_offset) const
+{
+
+
+	if (flag == true)
+	{
+		__super::Draw(screen_offset);
+	}
+
+	/*__super::Draw(screen_offset);*/
+}
+
+void coin::Finalize()
+{
+
+}
+
+void coin::AnimeCount(float delta_second)
+{
+	
+}
+
+void coin::Movement(float delta_second)
+{
+
+}
+
+coin* coin::GetInstance()
+{
+	if (instance == nullptr)
+	{
+		instance = new coin();
+	}
+	return instance;
+}
+
+void coin::OnHitCollision(GameObject* hit_object)
+{
+	//当たった時の処理
+	//coinSEの再生
+	PlaySoundMem(coin_sound, DX_PLAYTYPE_NORMAL, TRUE);
+	flag = false;
+	Finalize();
+}
+
+
+void coin::SetVelocity(float velo)
+{
+	location.x -= velo;
+}

@@ -8,7 +8,8 @@ GameObjectBase::GameObjectBase() :
 	image(NULL),
 	z_layer(0),
 	mobility(eMobilityType::Stationary),
-	flip_flag(false)
+	flip_flag(false),
+	flag(true)
 {
 
 }

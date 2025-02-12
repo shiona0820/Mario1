@@ -17,6 +17,7 @@ enum eMobilityType
 enum eType{
 	MARIO,
 	KURIBO,
+	COIN,
 };
  
 // ゲームオブジェクト基底クラス
@@ -111,5 +112,8 @@ public:
 	const eMobilityType GetMobility() const;
 
 	int GetType();   //自身のタイプの取得
+
+	bool flag;
+
 
 };

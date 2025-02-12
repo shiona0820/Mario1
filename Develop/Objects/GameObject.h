@@ -38,4 +38,5 @@ public:
 	{
 		return owner_scene->GetScreenOffset();
 	}
+
 };
