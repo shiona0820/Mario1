@@ -132,11 +132,19 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AppMain.cpp" />
+<<<<<<< HEAD
     <ClCompile Include="Objects\Item\coin.cpp" />
+=======
+    <ClCompile Include="Dokan.cpp" />
+    <ClCompile Include="Floor.cpp" />
+    <ClCompile Include="HatenaBlock.cpp" />
+    <ClCompile Include="NormalBlock.cpp" />
+>>>>>>> main
     <ClCompile Include="Objects\Enemy\kuribo.cpp" />
     <ClCompile Include="Objects\Enemy\nokonoko.cpp" />
     <ClCompile Include="Objects\GameObjectBase.cpp" />
     <ClCompile Include="Objects\Mario\Player.cpp" />
+    <ClCompile Include="RectCollision.cpp" />
     <ClCompile Include="Scene\SceneManager.cpp" />
     <ClCompile Include="Scene\InGameScene.cpp" />
     <ClCompile Include="Scene\TitleScene.cpp" />
@@ -148,12 +156,20 @@
     <ClCompile Include="Utility\Vector2D.cpp" />
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD
     <ClInclude Include="Objects\Item\coin.h" />
+=======
+    <ClInclude Include="Dokan.h" />
+    <ClInclude Include="Floor.h" />
+    <ClInclude Include="HatenaBlock.h" />
+    <ClInclude Include="NormalBlock.h" />
+>>>>>>> main
     <ClInclude Include="Objects\Enemy\kuribo.h" />
     <ClInclude Include="Objects\Enemy\nokonoko.h" />
     <ClInclude Include="Objects\GameObject.h" />
     <ClInclude Include="Objects\GameObjectBase.h" />
     <ClInclude Include="Objects\Mario\Player.h" />
+    <ClInclude Include="RectCollision.h" />
     <ClInclude Include="Scene\SceneBase.h" />
     <ClInclude Include="Scene\SceneManager.h" />
     <ClInclude Include="Scene\InGameScene.h" />

@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="AppMain.cpp" />
+    <ClCompile Include="Objects\Enemy\nokonoko.cpp">
+      <Filter>Objects\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Objects\Enemy\kuribo.cpp">
+      <Filter>Objects\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Objects\Mario\Player.cpp">
+      <Filter>Objects\Mario</Filter>
+    </ClCompile>
+    <ClCompile Include="Objects\GameObjectBase.cpp">
+      <Filter>Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\TitleScene.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\SceneManager.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\InGameScene.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Utility\Collision.cpp">
+      <Filter>Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="Utility\InputManager.cpp">
+      <Filter>Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="Utility\ProjectConfig.cpp">
+      <Filter>Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="Utility\ResourceManager.cpp">
+      <Filter>Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="Utility\StageData.cpp">
+      <Filter>Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="Utility\Vector2D.cpp">
+      <Filter>Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="Dokan.cpp">
+      <Filter>Objects\Gimmick</Filter>
+    </ClCompile>
+    <ClCompile Include="NormalBlock.cpp">
+      <Filter>Objects\Gimmick\Block</Filter>
+    </ClCompile>
+    <ClCompile Include="HatenaBlock.cpp">
+      <Filter>Objects\Gimmick\Block</Filter>
+    </ClCompile>
+    <ClCompile Include="Floor.cpp">
+      <Filter>Objects\Gimmick\Block</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Objects\Enemy\nokonoko.h">
+      <Filter>Objects\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\Enemy\kuribo.h">
+      <Filter>Objects\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\Mario\Player.h">
+      <Filter>Objects\Mario</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\GameObjectBase.h">
+      <Filter>Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\GameObject.h">
+      <Filter>Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\TitleScene.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\SceneManager.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\SceneBase.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\InGameScene.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Utility\Vector2D.h">
+      <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Utility\Collision.h">
+      <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Utility\InputManager.h">
+      <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Utility\ProjectConfig.h">
+      <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Utility\ResourceManager.h">
+      <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Utility\StageData.h">
+      <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Dokan.h">
+      <Filter>Objects\Gimmick</Filter>
+    </ClInclude>
+    <ClInclude Include="NormalBlock.h">
+      <Filter>Objects\Gimmick\Block</Filter>
+    </ClInclude>
+    <ClInclude Include="HatenaBlock.h">
+      <Filter>Objects\Gimmick\Block</Filter>
+    </ClInclude>
+    <ClInclude Include="Floor.h">
+      <Filter>Objects\Gimmick\Block</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Objects">
+      <UniqueIdentifier>{42c41242-b1e9-4f4b-bdac-2e5464ded9a8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Objects\Enemy">
+      <UniqueIdentifier>{3d207a3b-fdb0-42fe-838c-9c91ae79789a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Objects\Mario">
+      <UniqueIdentifier>{cf6d8301-fcd1-4c9f-bc43-508fa0a4c6da}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene">
+      <UniqueIdentifier>{180ed000-3c57-4b69-b350-9b521ce5105c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utility">
+      <UniqueIdentifier>{311f4465-c21f-4f4c-acc5-9369f09fb4ab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Objects\Gimmick">
+      <UniqueIdentifier>{4a444f66-d3b6-4b3d-a210-080659a9535e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Objects\Gimmick\Block">
+      <UniqueIdentifier>{f198e2ca-193c-48a0-b544-6530abedb1f9}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
