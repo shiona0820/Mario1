@@ -110,6 +110,7 @@ void InGameScene::Draw() const
 
 }
 
+//終了処理
 void InGameScene::Finalize()
 {
 	//親クラスの終了時処理を呼び出す
