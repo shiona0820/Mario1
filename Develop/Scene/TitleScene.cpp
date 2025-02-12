@@ -43,8 +43,7 @@ eSceneType TitleScene::Update(const float& delta_second)
 	InputManager* input = InputManager::GetInstance();
 
 	// インゲームシーンに遷移する
-	// シーン遷移用のキーを一時的に変更(変更前：スペースキー 変更後:エンターキー)
-  	if (input->GetKeyDown(KEY_INPUT_RETURN))
+  	if (input->GetKeyDown(KEY_INPUT_SPACE))
 	{
 		return eSceneType::in_game;
 	}

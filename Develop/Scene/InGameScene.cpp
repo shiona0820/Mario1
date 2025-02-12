@@ -13,22 +13,11 @@
 
 
 
-<<<<<<< HEAD
 InGameScene::InGameScene() :
 	mario_coin_ui(),
 	kakeru_ui(),
 	coin_num_min(),
 	coin_num_sec()
-=======
-InGameScene::InGameScene()
-	:player(nullptr)
-	,Kuribo(nullptr)
-	,velocity(0.0f)
-	,fream_time(0.0f)
-	,mario_time(0.0f)
-	,mario_ui(0)
-	,mario_world(0)
->>>>>>> main
 {
 	back_ground_BGM = NULL;
 }
