@@ -66,10 +66,10 @@ void TitleScene::Draw() const
 	DrawGraph(480, 10, mario_time,TRUE);
 	DrawGraph(50, 10, mario_ui, TRUE);
 	//コインの画像
-	DrawGraph(160, 25, mario_coin_ui[0], TRUE);
-	DrawGraph(190, 33, kakeru_ui[11], TRUE);
-	DrawGraph(210, 34, coin_num_min[0], TRUE);   //コイン10の位
-	DrawGraph(230, 34, coin_num_sec[0], TRUE);   //コイン１の位
+	DrawGraph(160, 25, mario_coin_ui[0], TRUE);  //コインの画像
+	DrawGraph(190, 33, kakeru_ui[11], TRUE);     //コイン横の×
+	DrawGraph(210, 34, coin_num_min[0], TRUE);   //コイン10の位の数字
+	DrawGraph(230, 34, coin_num_sec[0], TRUE);   //コイン１の位の数字
 }
 
 void TitleScene::Finalize()

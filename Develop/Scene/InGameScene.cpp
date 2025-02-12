@@ -13,7 +13,11 @@
 
 
 
-InGameScene::InGameScene()
+InGameScene::InGameScene() :
+	mario_coin_ui(),
+	kakeru_ui(),
+	coin_num_min(),
+	coin_num_sec()
 {
 	back_ground_BGM = NULL;
 }
@@ -44,6 +48,13 @@ void InGameScene::Initialize()
 	mario_time = rm->GetImages("Resource/images/UI/time.png")[0];
 	mario_world = rm->GetImages("Resource/images/UI/world.png")[0];
 
+	mario_coin_ui = rm->GetImages("Resource/images/Item/coin.png", 4, 4, 1, 32, 32);
+	kakeru_ui = rm->GetImages("Resource/images/Ui/num.png", 14, 14, 1, 16, 16);
+
+	//同じ一枚の画像を入れる
+	//コイン取得数
+	coin_num_min = kakeru_ui;
+	coin_num_sec = kakeru_ui;
 }
 
 eSceneType InGameScene::Update(const float& delta_second)
@@ -86,6 +97,12 @@ void InGameScene::Draw() const
 	DrawGraph(340, 10, mario_world, TRUE);
 	DrawGraph(480, 10, mario_time, TRUE);
 	DrawGraph(100, 10, mario_ui, TRUE);
+
+	//コインの画像
+	DrawGraph(160, 25, mario_coin_ui[0], TRUE);  //コインの画像
+	DrawGraph(190, 33, kakeru_ui[11], TRUE);     //コイン横の×
+	DrawGraph(210, 34, coin_num_min[0], TRUE);   //コイン10の位の数字
+	DrawGraph(230, 34, coin_num_sec[0], TRUE);   //コイン１の位の数字
 
 	__super::Draw();
 

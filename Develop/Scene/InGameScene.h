@@ -23,6 +23,12 @@ private:
 
 	int fream_time;   //フレームの時間設定
 
+
+	std::vector<int> mario_coin_ui;   //コイン画像
+	std::vector<int> kakeru_ui;       //コイン横の×の画像
+	std::vector<int>coin_num_min;         //コイン取得数の画像十の位
+	std::vector<int>coin_num_sec;         //コイン取得数の画像一の位
+
 public:
 	InGameScene();
 	virtual ~InGameScene();
