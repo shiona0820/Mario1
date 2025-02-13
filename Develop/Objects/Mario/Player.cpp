@@ -76,12 +76,15 @@ void Player::Initialize()
 	// スクロール初期化
 	scroll_offset = 0.0f;
 	ground_y = 500.0f;    // 地面のY座標
-	//ここまで
+	//ここまで*/
 
 	////ジャンプ力の初期化
 	//this->player->jump_velocity.y -= 15.0f;
 	//jump_location = 0.0f;
 
+
+		// **ここでコリジョンのサイズを設定！**
+	collision.SetPosition(location, 32, 32);
 }
 
 void Player::Update(float delta_second)
@@ -90,6 +93,9 @@ void Player::Update(float delta_second)
 	if (!is_on_ground) {
     velocity.y += D_GRAVITY * delta_second;
     }
+
+	// **ここでコリジョンのサイズを設定！**
+	collision.SetPosition(location, 32, 32);
 
 	if (location.y + velocity.y * delta_second >= ground_y) // 地面位置に達した場合
 	{

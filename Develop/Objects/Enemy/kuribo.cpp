@@ -33,6 +33,9 @@ void kuribo::Initialize()
 	collision.hit_object_type.push_back(eObjectType::player);
 	collision.hit_object_type.push_back(eObjectType::block);
 
+	// **ここでコリジョンのサイズを設定！**
+	collision.SetPosition(location, 32, 32);  // クリボーのサイズ（32×32）を設定
+
 	//エラーチェック
 	if (image == -1)
 	{
@@ -48,6 +51,9 @@ void kuribo::Update(float delta_second)
 {
 	velocity.x = -0.1;
 	location += velocity;
+
+	// **コリジョンの位置を更新**
+	collision.SetPosition(location, 32, 32);
 
 	switch (kuribo_state)
 	{
