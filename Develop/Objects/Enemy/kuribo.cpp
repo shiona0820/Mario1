@@ -41,7 +41,7 @@ void kuribo::Initialize()
 
 	velocity.x = -0.1;
 
-	
+
 }
 
 
@@ -49,7 +49,6 @@ void kuribo::Update(float delta_second)
 {
 	velocity.x = -0.1;
 	location += velocity;
-
 
 	switch (kuribo_state)
 	{

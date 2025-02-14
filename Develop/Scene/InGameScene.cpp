@@ -121,40 +121,4 @@ const eSceneType InGameScene::GetNowSceneType() const
 	return eSceneType ::in_game;
 }
 
-/// <summary>
-/// 当たり判定確認処理
-/// </summary>
-/// <param name="target">1つ目のゲームオブジェクト</param>
-/// <param name="partner">2つ目のゲームオブジェクト</param>
-//void InGameScene::CheckCollision(GameObjectBase* target, GameObjectBase* partner)
-/*{
-	// ヌルポチェック
-	if (target == nullptr || partner == nullptr)
-	{
-		return;
-	}
 
-	// 当たり判定情報を取得
-	Collision tc = target->GetCollision();
-	Collision pc = partner->GetCollision();
-
-	// 当たり判定が有効か確認する
-	if (tc.IsCheckHitTarget(pc.object_type) || pc.IsCheckHitTarget(tc.object_type))
-	{
-
-		// 線分の始点と終点を設定する
-		tc.point[0] += target->GetLocation();
-		tc.point[1] += target->GetLocation();
-		pc.point[0] += partner->GetLocation();
-		pc.point[1] += partner->GetLocation();
-
-		// カプセル同士の当たり判定
-		if (IsCheckCollision(tc, pc))
-		{
-			// 当たっていることを通知する
-			target->OnHitCollision(partner);
-			partner->OnHitCollision(target);
-		}
-
-	}
-}*/
