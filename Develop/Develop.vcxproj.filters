@@ -54,6 +54,9 @@
       <Filter>Objects\Gimmick\Block</Filter>
     </ClCompile>
     <ClCompile Include="RectCollision.cpp" />
+    <ClCompile Include="coin.cpp">
+      <Filter>Objects\Item</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Objects\Enemy\nokonoko.h">
@@ -114,6 +117,9 @@
       <Filter>Objects\Gimmick\Block</Filter>
     </ClInclude>
     <ClInclude Include="RectCollision.h" />
+    <ClInclude Include="coin.h">
+      <Filter>Objects\Item</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Objects">
@@ -136,6 +142,9 @@
     </Filter>
     <Filter Include="Objects\Gimmick\Block">
       <UniqueIdentifier>{f198e2ca-193c-48a0-b544-6530abedb1f9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Objects\Item">
+      <UniqueIdentifier>{6a000016-795a-4c99-a00c-92332b39f790}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
