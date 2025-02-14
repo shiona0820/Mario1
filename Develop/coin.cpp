@@ -33,6 +33,7 @@ void coin::Initialize()
 		throw("coin‚Ì‰æ‘œ‚ª‚ ‚è‚Ü‚¹‚ñ\n");
 	}
 
+	type = COIN;
 }
 
 void coin::Update(float delta_second)
