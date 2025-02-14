@@ -95,7 +95,7 @@ void coin::OnHitCollision(GameObject* hit_object)
 	//“–‚½‚Á‚½‚Ìˆ—
 	//coinSE‚ÌÄ¶
 	PlaySoundMem(coin_sound, DX_PLAYTYPE_NORMAL, TRUE);
-	//flag = false;
+	flag = false;
 	Finalize();
 }
 

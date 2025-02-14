@@ -26,6 +26,12 @@ enum class eCollisionSide
 	None
 };
 
+enum eType {
+	MARIO,
+	KURIBO,
+	COIN
+};
+
 // ゲームオブジェクト基底クラス
 class GameObjectBase
 {
@@ -39,6 +45,9 @@ protected:
 	Vector2D            velocity;
 	bool                flip_flag;      //反転フラグ
 	bool				draw_collision_box;	//当たり判定を描画フラグ
+
+	int type;
+	int coniUI;
 
 public:
 	GameObjectBase();
@@ -113,6 +122,9 @@ public:
 	/// </summary>
 	/// <returns>可動性情報</returns>
 	const eMobilityType GetMobility() const;
+
+	bool flag;
+
 	/// <summary>
 	/// デバッグ用当たり判定表示フラグを設定する
 	/// </summary>
