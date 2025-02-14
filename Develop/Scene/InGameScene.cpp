@@ -9,7 +9,7 @@
 #include "../Objects/Enemy/kuribo.h"
 #include "../Objects/Enemy/nokonoko.h"
 
-#include "../../Develop/coin.h"
+#include "../coin.h"
 
 #include "DxLib.h"
 #include <fstream>
