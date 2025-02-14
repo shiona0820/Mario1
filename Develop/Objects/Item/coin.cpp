@@ -40,12 +40,13 @@ void coin::Initialize()
 void coin::Update(float delta_second)
 {
 	
-
+	AnimeCount(delta_second);
 
 }
 
 void coin::Draw(const Vector2D& screen_offset) const
 {
+
 
 
 	if (flag == true)
@@ -63,7 +64,18 @@ void coin::Finalize()
 
 void coin::AnimeCount(float delta_second)
 {
-	
+	animation_time += delta_second;
+	if (animation_time >= (1.0f / 8.0f))
+	{
+		animation_time = 0.0f;
+		animation_count++;
+		if (animation_count >= 2)
+		{
+			animation_count = 0;
+		}
+		// ‰æ‘œ‚Ìİ’è
+		image = coin_animation[animation_num[animation_count]];
+	}
 }
 
 void coin::Movement(float delta_second)
