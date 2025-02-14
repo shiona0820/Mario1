@@ -126,8 +126,8 @@ const eSceneType InGameScene::GetNowSceneType() const
 /// </summary>
 /// <param name="target">1つ目のゲームオブジェクト</param>
 /// <param name="partner">2つ目のゲームオブジェクト</param>
-void InGameScene::CheckCollision(GameObjectBase* target, GameObjectBase* partner)
-{
+//void InGameScene::CheckCollision(GameObjectBase* target, GameObjectBase* partner)
+/*{
 	// ヌルポチェック
 	if (target == nullptr || partner == nullptr)
 	{
@@ -157,4 +157,4 @@ void InGameScene::CheckCollision(GameObjectBase* target, GameObjectBase* partner
 		}
 
 	}
-}
+}*/
