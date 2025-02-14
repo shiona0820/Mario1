@@ -34,6 +34,7 @@ void coin::Initialize()
 	}
 
 	type = COIN;
+
 }
 
 void coin::Update(float delta_second)
@@ -45,9 +46,6 @@ void coin::Update(float delta_second)
 
 void coin::Draw(const Vector2D& screen_offset) const
 {
-
-
-
 	if (flag == true)
 	{
 		__super::Draw(screen_offset);
