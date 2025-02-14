@@ -3,7 +3,7 @@
 
 Collision::Collision() :
 	is_blocking(false),
-	object_type(eObjectType::none),
+	object_type(eObjectType::eNone),
 	hit_object_type(),
 	position(0)
 {

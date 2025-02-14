@@ -6,16 +6,14 @@
 // オブジェクトタイプ
 enum class eObjectType : unsigned char
 {
-	none,
-	player,
-	enemy,
-	ground,
-	block,
-	item,
-	floor,
-	hatena,
-	flag
-	
+	eNone,
+	ePlayer,
+	eEnemy,
+	eGround,
+	eBlock,
+	eItem,
+	eFloor,
+	eHatena
 };
 
 //当たり判定のクラス

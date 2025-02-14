@@ -29,9 +29,9 @@ void kuribo::Initialize()
 
 	// 当たり判定の設定
 	collision.is_blocking = true;
-	collision.object_type = eObjectType::enemy;
-	collision.hit_object_type.push_back(eObjectType::player);
-	collision.hit_object_type.push_back(eObjectType::block);
+	collision.object_type = eObjectType::eEnemy;
+	collision.hit_object_type.push_back(eObjectType::ePlayer);
+	collision.hit_object_type.push_back(eObjectType::eBlock);
 
 	//エラーチェック
 	if (image == -1)
@@ -45,10 +45,10 @@ void kuribo::Initialize()
 	collision.SetSize(D_OBJECT_SIZE, D_OBJECT_SIZE);
 
 	//オブジェクトタイプを設定
-	collision.SetObjectType(eObjectType::enemy);
+	collision.SetObjectType(eObjectType::eEnemy);
 
 	//当たるオブジェクトタイプを設定
-	collision.SetHitObjectType({ eObjectType::player, eObjectType::ground });
+	collision.SetHitObjectType({ eObjectType::ePlayer, eObjectType::eGround });
 
 	//当たり判定の描画フラグ
 	SetDrawCollisionBox(false);
@@ -95,7 +95,7 @@ void kuribo::Finalize()
 void kuribo::OnHitCollision(GameObject* hit_object)
 {
 
-	if (hit_object->GetCollision().object_type == eObjectType::player)
+	if (hit_object->GetCollision().object_type == eObjectType::ePlayer)
 	{
 		//kuriboを消滅する
 		owner_scene->DestroyObject(this);

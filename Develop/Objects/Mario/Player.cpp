@@ -48,13 +48,26 @@ void Player::Initialize()
 	jump_SE = rm->GetSounds("Resource/Sounds/SE_SuperJump.wav");
 	
 
-	// 当たり判定の設定
+	/*/ 当たり判定の設定
 	collision.is_blocking = true;
 	collision.object_type = eObjectType::player;
 	collision.hit_object_type.push_back(eObjectType::enemy);
 	collision.hit_object_type.push_back(eObjectType::block);
 	collision.hit_object_type.push_back(eObjectType::item);
-	//collision.radius = (D_OBJECT_SIZE - 1.0f) / 2.0f;
+	//collision.radius = (D_OBJECT_SIZE - 1.0f) / 2.0f;*/
+
+	//当たり判定を設定
+	collision.SetSize(D_OBJECT_SIZE, D_OBJECT_SIZE);
+
+	//オブジェクトタイプを設定
+	collision.SetObjectType(eObjectType::ePlayer);
+
+	//当たるオブジェクトタイプを設定
+	collision.SetHitObjectType({ eObjectType::eEnemy, eObjectType::eGround });
+
+	//当たり判定の描画フラグ
+	SetDrawCollisionBox(false);
+
 	// レイヤーの設定
 	z_layer = 5;
 
@@ -101,6 +114,11 @@ void Player::Update(float delta_second)
 		is_on_ground = true;
 		player_state = ePlayerState::IDLE;
 	}
+
+	//当たり判定の位置を取得する
+	Vector2D collisionPosition = collision.GetPosition();
+	//当たり判定の位置を更新する
+	collision.SetPosition(location);
 
 	InputManager* Input = InputManager::GetInstance();
 
@@ -221,11 +239,11 @@ void Player::OnHitCollision(GameObjectBase* hit_object)
 		is_power_up = true;
 	}*/
 
-	// 当たったオブジェクトが敵だったら
+	/*/ 当たったオブジェクトが敵だったら
 	if (hit_object->GetCollision().object_type == eObjectType::enemy)
 	{
 		
-	}
+	}*/
 
 	// 当たったオブジェクトが土管だったら
 	// 当たったオブジェクトがゴールフラッグなら
