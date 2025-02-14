@@ -1,6 +1,7 @@
 #include "kuribo.h"
 
 #include "../../Utility/ResourceManager.h"
+#include "../Mario/Player.h"
 
 #include "DxLib.h"
 
@@ -26,6 +27,12 @@ void kuribo::Initialize()
 
 	image = move_animation[0];
 
+	// 当たり判定の設定
+	collision.is_blocking = true;
+	collision.object_type = eObjectType::eEnemy;
+	collision.hit_object_type.push_back(eObjectType::ePlayer);
+	collision.hit_object_type.push_back(eObjectType::eBlock);
+
 	//エラーチェック
 	if (image == -1)
 	{
@@ -33,6 +40,19 @@ void kuribo::Initialize()
 	}
 
 	velocity.x = -0.1;
+
+	//当たり判定を設定
+	collision.SetSize(D_OBJECT_SIZE, D_OBJECT_SIZE);
+
+	//オブジェクトタイプを設定
+	collision.SetObjectType(eObjectType::eEnemy);
+
+	//当たるオブジェクトタイプを設定
+	collision.SetHitObjectType({ eObjectType::ePlayer, eObjectType::eGround });
+
+	//当たり判定の描画フラグ
+	SetDrawCollisionBox(false);
+
 
 }
 
@@ -42,6 +62,11 @@ void kuribo::Update(float delta_second)
 	velocity.x = -0.1;
 	location += velocity;
 
+	//当たり判定の位置を取得する
+	Vector2D collisionPosition = collision.GetPosition();
+	//当たり判定の位置を更新する
+	collision.SetPosition(location);
+
 	switch (kuribo_state)
 	{
 	case WALK:
@@ -49,6 +74,7 @@ void kuribo::Update(float delta_second)
 		AnimeCount(delta_second);
 		break;
 	case STEP:
+		
 		break;
 	default:
 		break;
@@ -65,6 +91,17 @@ void kuribo::Finalize()
 {
 
 }
+
+void kuribo::OnHitCollision(GameObject* hit_object)
+{
+
+	if (hit_object->GetCollision().object_type == eObjectType::ePlayer)
+	{
+		//kuriboを消滅する
+		owner_scene->DestroyObject(this);
+	}
+}
+
 
 void kuribo::AnimeCount(float delta_second)
 {
