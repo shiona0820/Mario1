@@ -121,3 +121,36 @@ const eSceneType InGameScene::GetNowSceneType() const
 {
 	return eSceneType ::in_game;
 }
+
+void InGameScene::CheckCollision(GameObjectBase* target, GameObjectBase* partner)
+{
+	// ヌルポチェック
+	if (target == nullptr || partner == nullptr)
+	{
+		return;
+	}
+
+	// 当たり判定情報を取得
+	RectCollision tc = target->GetCollision();
+	RectCollision pc = partner->GetCollision();
+
+	// 当たり判定が有効か確認する
+	if (tc.IsCheckHitTarget(pc.object_type) || pc.IsCheckHitTarget(tc.object_type))
+	{
+
+		// 線分の始点と終点を設定する
+		tc.top_left += target->GetLocation();
+		tc.bottom_right += target->GetLocation();
+		pc.top_left += partner->GetLocation();
+		pc.bottom_right += partner->GetLocation();
+
+		// 当たり判定
+		if (IsCheckCollision(tc, pc))
+		{
+			// 当たっていることを通知する
+			target->OnHitCollision(partner);
+			partner->OnHitCollision(target);
+		}
+
+	}
+}

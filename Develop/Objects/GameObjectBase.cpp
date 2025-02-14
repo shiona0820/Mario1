@@ -47,16 +47,16 @@ void GameObjectBase::Draw(const Vector2D& screen_offset) const
     Vector2D graph_location = location + screen_offset;
     DrawRotaGraphF(graph_location.x, graph_location.y, scale, radian, image, TRUE, flip_flag);
 
-    // 当たり判定の矩形を描画
+    // コリジョンボックスを描画（赤色で表示）
     DrawBox(
         collision.top_left.x + screen_offset.x,
         collision.top_left.y + screen_offset.y,
         collision.bottom_right.x + screen_offset.x,
         collision.bottom_right.y + screen_offset.y,
-        GetColor(255, 0, 0), FALSE  // 赤色の枠
+        GetColor(255, 0, 0), FALSE
     );
-
 }
+
 
 void GameObjectBase::Finalize()
 {
@@ -89,16 +89,15 @@ RectCollision GameObjectBase::GetCollision() const
 
 void GameObjectBase::SetCollisionRect(float width, float height)
 {
-    // 位置をオブジェクトの中央に調整
-    float half_width = width / 2.0f;
-    float half_height = height / 2.0f;
+    box_size.x = width;
+    box_size.y = height;
 
-    collision.SetPosition(
-        Vector2D(location.x - half_width, location.y - half_height),
-        width,
-        height
-    );
+    // location を中心ではなく左上基準に調整
+    Vector2D collision_pos = Vector2D(location.x - width / 2.0f, location.y - height / 2.0f);
+
+    collision.SetPosition(collision_pos, width, height);
 }
+
 
 int GameObjectBase::GetZLayer() const
 {

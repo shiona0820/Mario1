@@ -27,9 +27,11 @@ public:
     ~RectCollision();
 
     bool IsCheckHitTarget(eObjectType hit_object) const;
+    bool IsColliding(const RectCollision& other) const;
     float GetWidth() const;
     float GetHeight() const;
     void SetPosition(const Vector2D& position, float width, float height);
 };
 
 bool IsCheckCollision(const RectCollision& rect1, const RectCollision& rect2);
+

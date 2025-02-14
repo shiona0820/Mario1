@@ -18,6 +18,7 @@ class GameObjectBase
 protected:
     class SceneBase* owner_scene;  // 所属するシーン
     Vector2D location;             // 位置座標
+    Vector2D box_size;
     RectCollision collision;       // 当たり判定情報
     int image;                     // 画像ID
     int z_layer;                   // 描画レイヤー

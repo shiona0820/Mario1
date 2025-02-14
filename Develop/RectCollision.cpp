@@ -44,3 +44,11 @@ bool IsCheckCollision(const RectCollision& rect1, const RectCollision& rect2)
         rect1.bottom_right.y <= rect2.top_left.y ||
         rect1.top_left.y >= rect2.bottom_right.y);
 }
+
+bool RectCollision::IsColliding(const RectCollision& other) const
+{
+    return !(this->bottom_right.x < other.top_left.x ||  // 自分の右端が相手の左端より左
+        this->top_left.x > other.bottom_right.x ||  // 自分の左端が相手の右端より右
+        this->bottom_right.y < other.top_left.y ||  // 自分の下端が相手の上端より上
+        this->top_left.y > other.bottom_right.y);   // 自分の上端が相手の下端より下
+}

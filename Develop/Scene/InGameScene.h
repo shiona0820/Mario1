@@ -34,5 +34,9 @@ public:
 	// 現在のシーンタイプ情報を取得する
 	virtual const eSceneType GetNowSceneType() const override;
 
+	// 当たり判定処理
+	virtual void CheckCollision(GameObjectBase* target, GameObjectBase* partner) override;
+
+
 };
 
