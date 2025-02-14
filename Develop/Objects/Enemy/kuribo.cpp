@@ -41,6 +41,18 @@ void kuribo::Initialize()
 
 	velocity.x = -0.1;
 
+	//当たり判定を設定
+	collision.SetSize(D_OBJECT_SIZE, D_OBJECT_SIZE);
+
+	//オブジェクトタイプを設定
+	collision.SetObjectType(eObjectType::enemy);
+
+	//当たるオブジェクトタイプを設定
+	collision.SetHitObjectType({ eObjectType::player, eObjectType::ground });
+
+	//当たり判定の描画フラグ
+	SetDrawCollisionBox(false);
+
 
 }
 
@@ -49,6 +61,11 @@ void kuribo::Update(float delta_second)
 {
 	velocity.x = -0.1;
 	location += velocity;
+
+	//当たり判定の位置を取得する
+	Vector2D collisionPosition = collision.GetPosition();
+	//当たり判定の位置を更新する
+	collision.SetPosition(location);
 
 	switch (kuribo_state)
 	{
@@ -80,7 +97,8 @@ void kuribo::OnHitCollision(GameObject* hit_object)
 
 	if (hit_object->GetCollision().object_type == eObjectType::player)
 	{
-		DestroyObject(this);
+		//kuriboを消滅する
+		owner_scene->DestroyObject(this);
 	}
 }
 
