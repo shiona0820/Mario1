@@ -17,6 +17,7 @@ private:
 	int back_ground_image;   //”wŒi‰æ‘œ
 
 	//ƒ^ƒCƒgƒ‹‰æ–ÊUI‚Ìİ’è
+	int mario_coin;
 	int mario_ui;
 	int mario_world;
 	int mario_time;

@@ -25,6 +25,8 @@ void TitleScene::Initialize()
 	// ”wŒi‰æ‘œ‚Ì“Ç‚İ‚İ
 	back_ground_image = rm->GetImages("Resource/images/title.png")[0];
 
+	Coin = CreateObject<coin>(Vector2D(175, 45));
+
 	//UI‚Ì“Ç‚İ‚İ
 	mario_ui = rm->GetImages("Resource/images/UI/name_mario.png")[0];
 	mario_time = rm->GetImages("Resource/images/UI/time.png")[0];
@@ -35,8 +37,6 @@ void TitleScene::Initialize()
 	//ƒRƒCƒ“æ“¾”
 	coin_num_min = kakeru_ui;
 	coin_num_sec = kakeru_ui;
-
-	Coin = CreateObject<coin>(Vector2D(175, 45));
 
 }
 

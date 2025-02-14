@@ -7,6 +7,7 @@
 
 #include "../Objects/Mario/Player.h"
 #include "../Objects/Enemy/kuribo.h"
+#include "../Objects/Enemy/nokonoko.h"
 
 #include "../Objects/Item/coin.h"
 
@@ -44,6 +45,7 @@ void InGameScene::Initialize()
 	player = CreateObject<Player>(Vector2D(100, 403));
 	//クリボーの表示
 	Kuribo = CreateObject<kuribo>(Vector2D(750, 403));
+	Nokonoko = CreateObject<nokonoko>(Vector2D(350, 385));
 
 	//アニメーションしているコインの表示
 	Coin = CreateObject<coin>(Vector2D(175, 45));
@@ -86,6 +88,7 @@ eSceneType InGameScene::Update(const float& delta_second)
 
 		//クリボー用
 		Kuribo->SetVelocity(player->GetVelocity().x);
+		Nokonoko->SetVelocity(player->GetVelocity().x);
 	}
 
 	// 親クラスの更新処理を呼び出す

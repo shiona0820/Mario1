@@ -8,8 +8,9 @@ class InGameScene : public SceneBase
 private:
 	class Player* player;		// プレイヤー情報
 	class kuribo* Kuribo;      //クリボーの情報
-
+	class nokonoko* Nokonoko;  //のこのこの情報
 	class coin* Coin;          //コインの情報
+
 	std::vector<int> coin_animation;   //こいんのアニメーション
 	//アニメーション用
 	const int animation_num[4] = { 1,2,3,4 };
