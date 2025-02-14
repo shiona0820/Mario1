@@ -6,10 +6,10 @@
 /// </summary>
 /// <param name="hit_object">相手のオブジェクトタイプ</param>
 /// <returns>適用するオブジェクトなら、true</returns>
-bool CapsuleCollision::IsCheckHitTarget(eObjectType hit_object) const
+bool CapsuleCollision::IsCheckHitTarget(eObjectType2 hit_object) const
 {
 	// 適用するオブジェクトタイプなら、true
-	for (eObjectType type : hit_object_type)
+	for (eObjectType2 type : hit_object_type)
 	{
 		if (type == hit_object)
 		{

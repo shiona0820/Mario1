@@ -91,7 +91,6 @@ eSceneType InGameScene::Update(const float& delta_second)
 	//}
 
 
-
 	// 親クラスの更新処理を呼び出す
 	return __super::Update(delta_second);
 }
@@ -134,23 +133,31 @@ void InGameScene::CheckCollision(GameObjectBase* target, GameObjectBase* partner
 	RectCollision tc = target->GetCollision();
 	RectCollision pc = partner->GetCollision();
 
-	// 当たり判定が有効か確認する
-	if (tc.IsCheckHitTarget(pc.object_type) || pc.IsCheckHitTarget(tc.object_type))
+	// **エラー対策: hit_object_type のサイズ確認**
+	if (tc.hit_object_type.empty() || pc.hit_object_type.empty())
 	{
+		return; // 当たり判定対象が設定されていない場合、処理しない
+	}
 
-		// 線分の始点と終点を設定する
-		tc.top_left += target->GetLocation();
-		tc.bottom_right += target->GetLocation();
-		pc.top_left += partner->GetLocation();
-		pc.bottom_right += partner->GetLocation();
+	// コリジョン対象のチェック
+	if (!tc.IsCheckHitTarget(pc.object_type) && !pc.IsCheckHitTarget(tc.object_type))
+	{
+		return; // 互いに当たり判定対象でないならスキップ
+	}
 
-		// 当たり判定
-		if (IsCheckCollision(tc, pc))
-		{
-			// 当たっていることを通知する
-			target->OnHitCollision(partner);
-			partner->OnHitCollision(target);
-		}
+	// **座標を加算して、ワールド座標に変換**
+	tc.top_left += target->GetLocation();
+	tc.bottom_right += target->GetLocation();
+	pc.top_left += partner->GetLocation();
+	pc.bottom_right += partner->GetLocation();
 
+	// **衝突判定を実行**
+	if (IsCheckCollision(tc, pc))
+	{
+		// コリジョン発生時の処理
+		target->OnHitCollision(partner);
+		partner->OnHitCollision(target);
 	}
 }
+
+

@@ -4,7 +4,7 @@
 #include <vector>
 
 // オブジェクトタイプ
-enum class eObjectType : unsigned char
+enum class eObjectType2 : unsigned char
 {
 	none,
 	player,
@@ -20,15 +20,15 @@ class CapsuleCollision
 {
 public:
 	bool						is_blocking;		// すり抜けフラグ
-	eObjectType					object_type;		// 自身のオブジェクトタイプ
-	std::vector<eObjectType>	hit_object_type;	// 適用するオブジェクトタイプ
+	eObjectType2					object_type;		// 自身のオブジェクトタイプ
+	std::vector<eObjectType2>	hit_object_type;	// 適用するオブジェクトタイプ
 	float						radius;				// 円の半径
 	Vector2D					point[2];			// 始点と終点（相対座標）
 
 public:
 	CapsuleCollision() :
 		is_blocking(false),
-		object_type(eObjectType::none),
+		object_type(eObjectType2::none),
 		hit_object_type(),
 		radius(0.0f)
 	{
@@ -41,7 +41,7 @@ public:
 	}
 
 	// 当たり判定有効確認処理
-	bool IsCheckHitTarget(eObjectType hit_object) const;
+	bool IsCheckHitTarget(eObjectType2 hit_object) const;
 };
 
 // 円形状クラス

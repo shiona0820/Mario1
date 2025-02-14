@@ -11,6 +11,8 @@ RectCollision::~RectCollision() = default;
 
 bool RectCollision::IsCheckHitTarget(eObjectType hit_object) const
 {
+    if (hit_object_type.empty()) return false; // **‹ó‚È‚ç false ‚ð•Ô‚·**
+
     for (eObjectType type : hit_object_type)
     {
         if (type == hit_object)
@@ -20,6 +22,7 @@ bool RectCollision::IsCheckHitTarget(eObjectType hit_object) const
     }
     return false;
 }
+
 
 float RectCollision::GetWidth() const
 {

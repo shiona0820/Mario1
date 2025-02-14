@@ -36,6 +36,8 @@ public:
 
 	// “–‚½‚è”»’èˆ—
 	virtual void CheckCollision(GameObjectBase* target, GameObjectBase* partner) override;
+	
+	void CheckAllCollisions();
 
 
 };
