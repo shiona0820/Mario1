@@ -7,15 +7,24 @@ class TitleScene : public SceneBase
 {
 private:
 
+	class coin* Coin;   //コインの情報
+	std::vector<int> coin_animation;   //こいんのアニメーション
+	//アニメーション用
+	const int animation_num[4] = { 1,2,3,4 };
+	int animation_count;
+	float animation_time;
+
 	int back_ground_image;   //背景画像
 
 	//タイトル画面UIの設定
+	int mario_coin;
 	int mario_ui;
 	int mario_world;
 	int mario_time;
-	int mario_coin;
 
-	int coin_ui;
+	std::vector<int> kakeru_ui;       //コイン横の×の画像
+	std::vector<int>coin_num_min;         //コイン取得数の画像十の位
+	std::vector<int>coin_num_sec;         //コイン取得数の画像一の位
 
 public:
 	TitleScene();
@@ -29,6 +38,6 @@ public:
 	// 現在のシーンタイプ情報を取得する
 	virtual const eSceneType GetNowSceneType() const override;
 
-	
+
 };
 
