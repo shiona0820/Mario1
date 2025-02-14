@@ -53,6 +53,7 @@
     <ClCompile Include="Floor.cpp">
       <Filter>Objects\Gimmick\Block</Filter>
     </ClCompile>
+    <ClCompile Include="RectCollision.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Objects\Enemy\nokonoko.h">
@@ -112,6 +113,7 @@
     <ClInclude Include="Floor.h">
       <Filter>Objects\Gimmick\Block</Filter>
     </ClInclude>
+    <ClInclude Include="RectCollision.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Objects">
