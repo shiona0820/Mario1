@@ -34,6 +34,7 @@ void coin::Initialize()
 	}
 
 	type = COIN;
+
 }
 
 void coin::Update(float delta_second)
