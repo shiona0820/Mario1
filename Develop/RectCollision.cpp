@@ -9,19 +9,21 @@ RectCollision::RectCollision()
 
 RectCollision::~RectCollision() = default;
 
-bool RectCollision::IsCheckHitTarget(eObjectType hit_object) const
+bool RectCollision::IsCheckHitTarget(eObjectType targetType) const
 {
-    if (hit_object_type.empty()) return false; // **空なら false を返す**
+    if (hit_object_type.empty()) return false;  // ここで空なら即リターン
 
-    for (eObjectType type : hit_object_type)
+    for (size_t i = 0; i < hit_object_type.size(); i++)
     {
-        if (type == hit_object)
+        if (hit_object_type[i] == targetType)
         {
             return true;
         }
     }
     return false;
 }
+
+
 
 
 float RectCollision::GetWidth() const
@@ -55,3 +57,4 @@ bool RectCollision::IsColliding(const RectCollision& other) const
         this->bottom_right.y < other.top_left.y ||  // 自分の下端が相手の上端より上
         this->top_left.y > other.bottom_right.y);   // 自分の上端が相手の下端より下
 }
+

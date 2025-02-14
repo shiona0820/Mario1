@@ -228,7 +228,7 @@ void Player::OnHitCollision(GameObjectBase* hit_object)
 	// 当たったオブジェクトが敵だったら
 	if (hit_object->GetCollision().object_type == eObjectType::enemy)
 	{
-		player_state = ePlayerState::DIE;
+		
 	}
 
 	// 当たったオブジェクトが土管だったら
@@ -381,11 +381,6 @@ void Player::JumpMoment(float delta_second)
 			player_state = ePlayerState::Jump;
 			is_on_ground = false;
 			PlaySoundMem(jump_SE, DX_PLAYTYPE_BACK, TRUE);
-		}
-
-		else if (location.y >= 200.0f && is_on_ground == false)
-		{
-			is_on_ground = true;
 		}
 }
 

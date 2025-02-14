@@ -1,6 +1,8 @@
 #pragma once
 
 #include "SceneBase.h"
+#include "../Objects/GameObjectBase.h"
+#include "../RectCollision.h"
 
 class InGameScene : public SceneBase
 {
@@ -35,10 +37,7 @@ public:
 	virtual const eSceneType GetNowSceneType() const override;
 
 	// “–‚½‚è”»’èˆ—
-	virtual void CheckCollision(GameObjectBase* target, GameObjectBase* partner) override;
-	
-	void CheckAllCollisions();
-
+	void CheckCollision(GameObjectBase* target, GameObjectBase* partner);
 
 };
 
