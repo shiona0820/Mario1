@@ -1,4 +1,4 @@
-#include "RectCollision.h"
+/*#include "RectCollision.h"
 
 RectCollision::RectCollision()
     : is_blocking(false),
@@ -57,4 +57,4 @@ bool RectCollision::IsColliding(const RectCollision& other) const
         this->bottom_right.y < other.top_left.y ||  // 自分の下端が相手の上端より上
         this->top_left.y > other.bottom_right.y);   // 自分の上端が相手の下端より下
 }
-
+*/

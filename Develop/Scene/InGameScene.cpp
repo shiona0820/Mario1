@@ -10,7 +10,6 @@
 
 #include "DxLib.h"
 #include <fstream>
-#include <iostream>
 
 
 
@@ -122,24 +121,40 @@ const eSceneType InGameScene::GetNowSceneType() const
 	return eSceneType ::in_game;
 }
 
-void InGameScene::CheckCollision(GameObjectBase* target, GameObjectBase* partner) {
-	if (!target || !partner) {
+/// <summary>
+/// 当たり判定確認処理
+/// </summary>
+/// <param name="target">1つ目のゲームオブジェクト</param>
+/// <param name="partner">2つ目のゲームオブジェクト</param>
+void InGameScene::CheckCollision(GameObjectBase* target, GameObjectBase* partner)
+{
+	// ヌルポチェック
+	if (target == nullptr || partner == nullptr)
+	{
 		return;
 	}
 
-	RectCollision tc = target->GetCollision();
-	RectCollision pc = partner->GetCollision();
+	// 当たり判定情報を取得
+	Collision tc = target->GetCollision();
+	Collision pc = partner->GetCollision();
 
-	if (tc.IsCheckHitTarget(pc.object_type) || pc.IsCheckHitTarget(tc.object_type)) {
-		tc.top_left += target->GetLocation();
-		tc.bottom_right += target->GetLocation();
-		pc.top_left += partner->GetLocation();
-		pc.bottom_right += partner->GetLocation();
+	// 当たり判定が有効か確認する
+	if (tc.IsCheckHitTarget(pc.object_type) || pc.IsCheckHitTarget(tc.object_type))
+	{
 
-		if (IsCheckCollision(tc, pc)) {
+		// 線分の始点と終点を設定する
+		tc.point[0] += target->GetLocation();
+		tc.point[1] += target->GetLocation();
+		pc.point[0] += partner->GetLocation();
+		pc.point[1] += partner->GetLocation();
+
+		// カプセル同士の当たり判定
+		if (IsCheckCollision(tc, pc))
+		{
+			// 当たっていることを通知する
 			target->OnHitCollision(partner);
 			partner->OnHitCollision(target);
 		}
+
 	}
 }
-

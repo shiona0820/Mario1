@@ -82,9 +82,6 @@ void Player::Initialize()
 	//this->player->jump_velocity.y -= 15.0f;
 	//jump_location = 0.0f;
 
-
-	// ここでコリジョンのサイズを設定
-	SetCollisionRect(32, 32);
 }
 
 void Player::Update(float delta_second)
@@ -94,8 +91,7 @@ void Player::Update(float delta_second)
     velocity.y += D_GRAVITY * delta_second;
     }
 
-	// コリジョンの位置を更新
-	SetCollisionRect(32, 32);
+
 
 	if (location.y + velocity.y * delta_second >= ground_y) // 地面位置に達した場合
 	{

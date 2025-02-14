@@ -1,8 +1,6 @@
 #pragma once
 
 #include "SceneBase.h"
-#include "../Objects/GameObjectBase.h"
-#include "../RectCollision.h"
 
 class InGameScene : public SceneBase
 {
@@ -36,7 +34,6 @@ public:
 	// 現在のシーンタイプ情報を取得する
 	virtual const eSceneType GetNowSceneType() const override;
 
-	// 当たり判定処理
 	void CheckCollision(GameObjectBase* target, GameObjectBase* partner);
 
 };

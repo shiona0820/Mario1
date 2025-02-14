@@ -1,80 +1,61 @@
 #pragma once
 
-#include "Vector2D.h"
+#include"Vector2D.h"
 #include <vector>
 
 // オブジェクトタイプ
-enum class eObjectType2 : unsigned char
+enum class eObjectType : unsigned char
 {
 	none,
 	player,
 	enemy,
-	wall,
-	food,
-	power_food,
-	special,
+	ground,
+	block,
+	item,
+	floor,
+	hatena,
+	flag
+	
 };
 
-// 当たり判定基底クラス
-class CapsuleCollision
+//当たり判定のクラス
+class Collision
 {
 public:
-	bool						is_blocking;		// すり抜けフラグ
-	eObjectType2					object_type;		// 自身のオブジェクトタイプ
-	std::vector<eObjectType2>	hit_object_type;	// 適用するオブジェクトタイプ
-	float						radius;				// 円の半径
-	Vector2D					point[2];			// 始点と終点（相対座標）
+	bool is_blocking;	//オブジェクトの動きが止められているか確認する変数
+	Vector2D box_size;	//当たり判定の大きさ
+	Vector2D pivot;		//当たり判定とオブジェクトのオフセット
+	eObjectType object_type;	//オブジェクトのタイプ
+	std::vector<eObjectType> hit_object_type;	//当たる資格を持つオブジェクト
+
+private:
+	Vector2D position;
 
 public:
-	CapsuleCollision() :
-		is_blocking(false),
-		object_type(eObjectType2::none),
-		hit_object_type(),
-		radius(0.0f)
-	{
-		point[0] = 0.0f;
-		point[1] = 0.0f;
-	}
-	~CapsuleCollision()
-	{
-		hit_object_type.clear();
-	}
+	Collision();
+	~Collision();
 
-	// 当たり判定有効確認処理
-	bool IsCheckHitTarget(eObjectType2 hit_object) const;
+	//当たり判定の位置設置
+	void SetPosition(const Vector2D& pos);
+
+	//当たり判定の位置の取得
+	const Vector2D& GetPosition() const;
+
+	//当たり判定の大きさ設定
+	void SetSize(const float& width, const float& height);
+
+	//当たり判定の大きさ取得
+	Vector2D GetSize();
+
+	//オブジェクトタイプの設定
+	void SetObjectType(const eObjectType& FUNC_objecttype);
+
+	//当たるオブジェクトタイプの設定
+	void SetHitObjectType(const std::vector<eObjectType>& FUNC_hitobjecttype);
+
+	//当たったオブジェクトのタイプ確認
+	bool IsCheckHitTarget(eObjectType FUNC_hitobject) const;
+
+	//当たり判定同士が当たっているか確認
+	bool CheckCollision(const Collision& other) const;
 };
-
-// 円形状クラス
-class CircleCollision
-{
-public:
-	Vector2D point;
-	float radius;
-
-public:
-	CircleCollision() :
-		point(0.0f), radius(0.0f)
-	{
-
-	}
-	~CircleCollision() = default;
-};
-
-
-/// <summary>
-/// 当たり判定確認処理
-/// </summary>
-/// <param name="c1">形状の情報1</param>
-/// <param name="c2">形状の情報2</param>
-/// <returns>当たっているなら、true</returns>
-bool IsCheckCollision(const CircleCollision& c1, const CircleCollision& c2);
-bool IsCheckCollision(const CapsuleCollision& c1, const CircleCollision& c2);
-bool IsCheckCollision(const CapsuleCollision& c1, const CapsuleCollision& c2);
-
-/// <summary>
-/// 点とカプセルの線分の最近傍点を求める処理
-/// </summary>
-/// <param name="cap">カプセル情報</param>
-/// <param name="point">円の中心点</param>
-/// <returns>最近傍点</returns>
-Vector2D NearPointCheck(const CapsuleCollision& cap, const Vector2D& point);

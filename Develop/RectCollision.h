@@ -1,4 +1,4 @@
-#pragma once
+/*#pragma once
 
 #include "Utility/Vector2D.h"
 #include <vector>
@@ -33,5 +33,5 @@ public:
     void SetPosition(const Vector2D& position, float width, float height);
 };
 
-bool IsCheckCollision(const RectCollision& rect1, const RectCollision& rect2);
+bool IsCheckCollision(const RectCollision& rect1, const RectCollision& rect2);*/
 

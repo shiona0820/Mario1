@@ -1,110 +1,184 @@
 #include "GameObjectBase.h"
+#include "../Utility/InputManager.h"
 #include "../Scene/SceneBase.h"
 #include "DxLib.h"
 
-GameObjectBase::GameObjectBase() :
-    owner_scene(nullptr),
-    location(0.0f),
-    image(-1),
-    z_layer(0),
-    mobility(eMobilityType::Stationary),
-    velocity(0.0f),
-    scale(1.0),
-    radian(0.0),
-    flip_flag(false)
+	GameObjectBase::GameObjectBase() :
+	owner_scene(nullptr),
+	location(0.0f),
+	image(NULL),
+	z_layer(0),
+	mobility(eMobilityType::Stationary),
+	velocity(0),
+	flip_flag(false),
+	draw_collision_box(false)
 {
-    // デフォルトのコリジョンサイズを設定
-    SetCollisionRect(D_OBJECT_SIZE, D_OBJECT_SIZE);
+
 }
 
 GameObjectBase::~GameObjectBase()
 {
+
 }
 
+/// <summary>
+/// 初期化処理
+/// </summary>
 void GameObjectBase::Initialize()
 {
+
 }
 
+/// <summary>
+/// 更新処理
+/// </summary>
+/// <param name="delta_second">1フレームあたりの時間</param>
 void GameObjectBase::Update(float delta_second)
 {
-    // 位置更新
-    location += velocity * delta_second;
-
-    // 当たり判定の位置をオブジェクトの中央に補正
-    float half_width = collision.GetWidth() / 2.0f;
-    float half_height = collision.GetHeight() / 2.0f;
-
-    collision.SetPosition(
-        Vector2D(location.x - half_width, location.y - half_height),
-        collision.GetWidth(),
-        collision.GetHeight()
-    );
 
 }
 
-void GameObjectBase::Draw(const Vector2D& screen_offset) const
+/// <summary>
+/// 描画処理
+/// </summary>
+/// <param name="screen_offset">オフセット値</param>
+void GameObjectBase::Draw(const Vector2D & screen_offset) const
 {
-    Vector2D graph_location = location + screen_offset;
-    DrawRotaGraphF(graph_location.x, graph_location.y, scale, radian, image, TRUE, flip_flag);
-
-    // コリジョンボックスを描画（赤色で表示）
-    DrawBox(
-        collision.top_left.x + screen_offset.x,
-        collision.top_left.y + screen_offset.y,
-        collision.bottom_right.x + screen_offset.x,
-        collision.bottom_right.y + screen_offset.y,
-        GetColor(255, 0, 0), FALSE
-    );
+	// オフセット値を基に画像の描画を行う
+	Vector2D graph_location = this->location + screen_offset;
+	DrawRotaGraphF(graph_location.x, graph_location.y, 1.0, 0.0, image, TRUE, this->flip_flag);
 }
 
+/// <summary>
+/// デバッグ用当たり判定描画処理
+/// </summary>
+void GameObjectBase::DrawCollision(const Vector2D & screen_offset) const
+{
+	if (draw_collision_box)
+	{
+		//当たり判定の位置を取得する
+		Vector2D min = collision.GetPosition() - (collision.box_size / 2) + collision.pivot + screen_offset;
+		Vector2D max = collision.GetPosition() + (collision.box_size / 2) + collision.pivot + screen_offset;
 
+		//当たり判定を描画する
+		DrawBoxAA(min.x, min.y, max.x, max.y, GetColor(255, 0, 0), false);
+	}
+}
+
+/// <summary>
+/// 終了時処理
+/// </summary>
 void GameObjectBase::Finalize()
 {
+
 }
 
-void GameObjectBase::OnHitCollision(GameObjectBase* hit_object)
+/// <summary>
+/// 当たり判定通知処理
+/// </summary>
+/// <param name="hit_object">当たったゲームオブジェクトのポインタ</param>
+void GameObjectBase::OnHitCollision(GameObjectBase * hit_object)
 {
+
 }
 
-void GameObjectBase::SetOwnerScene(SceneBase* scene)
+//当たり判定の衝突面を返す	/* プレーヤーが地面と接触すると、地面の衝突面を返却する */
+eCollisionSide GameObjectBase::GetCollisionSide(const GameObjectBase & other) const
 {
-    owner_scene = scene;
+	Vector2D thisMin = collision.GetPosition() - (collision.box_size / 2) + collision.pivot;
+	Vector2D thisMax = collision.GetPosition() + (collision.box_size / 2) + collision.pivot;
+
+	Vector2D otherMin = other.collision.GetPosition() - (other.collision.box_size / 2) + other.collision.pivot;
+	Vector2D otherMax = other.collision.GetPosition() + (other.collision.box_size / 2) + other.collision.pivot;
+
+	float leftOverlap = otherMax.x - thisMin.x;
+	float rightOverlap = thisMax.x - otherMin.x;
+	float topOverlap = otherMax.y - thisMin.y;
+	float bottomOverlap = thisMax.y - otherMin.y;
+
+	//衝突していない場合
+	if (leftOverlap <= 0.0f || rightOverlap <= 0.0f || topOverlap <= 0.0f || bottomOverlap <= 0.0f)
+	{
+		return eCollisionSide::None;
+	}
+
+	//当たったオブジェクトのどの面が最も重なっているかを比較
+	if (topOverlap < bottomOverlap && topOverlap < leftOverlap && topOverlap < rightOverlap)
+	{
+		return eCollisionSide::Bottom;
+	}
+	else if (bottomOverlap < topOverlap && bottomOverlap < leftOverlap && bottomOverlap < rightOverlap)
+	{
+		return eCollisionSide::Top;
+	}
+	else if (leftOverlap < rightOverlap)
+	{
+		return eCollisionSide::Right;
+	}
+	else
+	{
+		return eCollisionSide::Left;
+	}
 }
 
+/// <summary>
+/// 所有シーン情報の設定
+/// </summary>
+/// <param name="scene">所有シーン情報</param>
+void GameObjectBase::SetOwnerScene(SceneBase * scene)
+{
+	this->owner_scene = scene;
+}
+
+/// <summary>
+/// 位置座標取得処理
+/// </summary>
+/// <returns>位置座標情報</returns>
 const Vector2D& GameObjectBase::GetLocation() const
 {
-    return location;
+	return location;
 }
 
-void GameObjectBase::SetLocation(const Vector2D& new_location)
+/// <summary>
+/// 位置情報変更処理
+/// </summary>
+/// <param name="location">変更したい位置情報</param>
+void GameObjectBase::SetLocation(const Vector2D & location)
 {
-    location = new_location;
-    collision.SetPosition(location, collision.GetWidth(), collision.GetHeight());
+	this->location = location;
 }
 
-RectCollision GameObjectBase::GetCollision() const
+/// <summary>
+/// 当たり判定取得処理
+/// </summary>
+/// <returns>当たり判定情報</returns>
+Collision GameObjectBase::GetCollision() const
 {
-    return collision;
+	return collision;
 }
 
-void GameObjectBase::SetCollisionRect(float width, float height)
+/// <summary>
+/// Zレイヤー情報取得処理
+/// </summary>
+/// <returns>Zレイヤー情報</returns>
+const int GameObjectBase::GetZLayer() const
 {
-    box_size.x = width;
-    box_size.y = height;
-
-    // location を中心ではなく左上基準に調整
-    Vector2D collision_pos = Vector2D(location.x - width / 2.0f, location.y - height / 2.0f);
-
-    collision.SetPosition(collision_pos, width, height);
+	return z_layer;
 }
 
-
-int GameObjectBase::GetZLayer() const
+/// <summary>
+/// 可動性情報の取得処理
+/// </summary>
+/// <returns>可動性情報</returns>
+const eMobilityType GameObjectBase::GetMobility() const
 {
-    return z_layer;
+	return mobility;
 }
 
-eMobilityType GameObjectBase::GetMobility() const
+/// <summary>
+/// デバッグ用当たり判定表示フラグを設定する
+/// </summary>
+void GameObjectBase::SetDrawCollisionBox(bool flag)
 {
-    return mobility;
+	draw_collision_box = flag;
 }
