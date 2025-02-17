@@ -1,4 +1,5 @@
 #include "GameObjectBase.h"
+#include "../Utility/InputManager.h"
 #include "../Scene/SceneBase.h"
 #include "DxLib.h"
 
@@ -8,8 +9,9 @@ GameObjectBase::GameObjectBase() :
 	image(NULL),
 	z_layer(0),
 	mobility(eMobilityType::Stationary),
+	velocity(0),
 	flip_flag(false),
-	flag(true)
+	draw_collision_box(false)
 {
 
 }
@@ -48,6 +50,22 @@ void GameObjectBase::Draw(const Vector2D& screen_offset) const
 }
 
 /// <summary>
+/// デバッグ用当たり判定描画処理
+/// </summary>
+void GameObjectBase::DrawCollision(const Vector2D & screen_offset) const
+{
+	if (draw_collision_box)
+	{
+		//当たり判定の位置を取得する
+		Vector2D min = collision.GetPosition() - (collision.box_size / 2) + collision.pivot + screen_offset;
+		Vector2D max = collision.GetPosition() + (collision.box_size / 2) + collision.pivot + screen_offset;
+
+		//当たり判定を描画する
+		DrawBoxAA(min.x, min.y, max.x, max.y, GetColor(255, 0, 0), false);
+	}
+}
+
+/// <summary>
 /// 終了時処理
 /// </summary>
 void GameObjectBase::Finalize()
@@ -62,6 +80,45 @@ void GameObjectBase::Finalize()
 void GameObjectBase::OnHitCollision(GameObjectBase* hit_object)
 {
 
+}
+
+//当たり判定の衝突面を返す	/* プレーヤーが地面と接触すると、地面の衝突面を返却する */
+eCollisionSide GameObjectBase::GetCollisionSide(const GameObjectBase & other) const
+{
+	Vector2D thisMin = collision.GetPosition() - (collision.box_size / 2) + collision.pivot;
+	Vector2D thisMax = collision.GetPosition() + (collision.box_size / 2) + collision.pivot;
+
+	Vector2D otherMin = other.collision.GetPosition() - (other.collision.box_size / 2) + other.collision.pivot;
+	Vector2D otherMax = other.collision.GetPosition() + (other.collision.box_size / 2) + other.collision.pivot;
+
+	float leftOverlap = otherMax.x - thisMin.x;
+	float rightOverlap = thisMax.x - otherMin.x;
+	float topOverlap = otherMax.y - thisMin.y;
+	float bottomOverlap = thisMax.y - otherMin.y;
+
+	//衝突していない場合
+	if (leftOverlap <= 0.0f || rightOverlap <= 0.0f || topOverlap <= 0.0f || bottomOverlap <= 0.0f)
+	{
+		return eCollisionSide::None;
+	}
+
+	//当たったオブジェクトのどの面が最も重なっているかを比較
+	if (topOverlap < bottomOverlap && topOverlap < leftOverlap && topOverlap < rightOverlap)
+	{
+		return eCollisionSide::Bottom;
+	}
+	else if (bottomOverlap < topOverlap && bottomOverlap < leftOverlap && bottomOverlap < rightOverlap)
+	{
+		return eCollisionSide::Top;
+	}
+	else if (leftOverlap < rightOverlap)
+	{
+		return eCollisionSide::Right;
+	}
+	else
+	{
+		return eCollisionSide::Left;
+	}
 }
 
 /// <summary>
@@ -95,7 +152,7 @@ void GameObjectBase::SetLocation(const Vector2D& location)
 /// 当たり判定取得処理
 /// </summary>
 /// <returns>当たり判定情報</returns>
-CapsuleCollision GameObjectBase::GetCollision() const
+Collision GameObjectBase::GetCollision() const
 {
 	return collision;
 }
@@ -118,12 +175,10 @@ const eMobilityType GameObjectBase::GetMobility() const
 	return mobility;
 }
 
-Vector2D GameObjectBase::GetBoxSize() const
+/// <summary>
+/// デバッグ用当たり判定表示フラグを設定する
+/// </summary>
+void GameObjectBase::SetDrawCollisionBox(bool flag)
 {
-	return box_size;
-}
-
-int GameObjectBase::GetType()
-{
-	return this->type;
+	draw_collision_box = flag;
 }

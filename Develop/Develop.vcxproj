@@ -132,6 +132,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AppMain.cpp" />
+    <ClCompile Include="Dokan.cpp" />
+    <ClCompile Include="Floor.cpp" />
+    <ClCompile Include="HatenaBlock.cpp" />
+    <ClCompile Include="NormalBlock.cpp" />
     <ClCompile Include="Objects\Item\coin.cpp" />
     <ClCompile Include="Objects\Enemy\kuribo.cpp" />
     <ClCompile Include="Objects\Enemy\nokonoko.cpp" />
@@ -148,6 +152,10 @@
     <ClCompile Include="Utility\Vector2D.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Dokan.h" />
+    <ClInclude Include="Floor.h" />
+    <ClInclude Include="HatenaBlock.h" />
+    <ClInclude Include="NormalBlock.h" />
     <ClInclude Include="Objects\Item\coin.h" />
     <ClInclude Include="Objects\Enemy\kuribo.h" />
     <ClInclude Include="Objects\Enemy\nokonoko.h" />

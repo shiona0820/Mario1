@@ -39,8 +39,8 @@ public:
 	virtual void Draw(const Vector2D& screen_offset) const override;
 	virtual void Finalize() override;
 
-	/*virtual void OnHitCollision(GameObject* hit_object) ;*/
-
+	virtual void OnHitCollision(GameObject* hit_object);
+	
 	void SetVelocity(float velo);
 
 	static kuribo* GetInstance();
@@ -49,5 +49,7 @@ private:
 
 	void Movement(float delta_second);
 	void AnimeCount(float delta_second);
+
+
 };
 

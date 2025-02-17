@@ -19,16 +19,13 @@ private:
 
 	std::vector<kuribo> enemies;      //複数描画用
 
-
 	int back_ground_BGM;		// BGM
-	
 	float velocity;
 
 	//タイトル画面UIの設定
 	int mario_ui;
 	int mario_world;
 	int mario_time;
-
 	int fream_time;   //フレームの時間設定
 
 	std::vector<int> kakeru_ui;       //コイン横の×の画像
@@ -49,6 +46,5 @@ public:
 
 private:
 	void AnimeCount(float delta_secound);
-
 };
 

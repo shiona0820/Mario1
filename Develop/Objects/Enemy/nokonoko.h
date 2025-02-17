@@ -12,42 +12,41 @@ enum eNokonokoState
 class nokonoko : public GameObject
 {
 private:
-	std::vector<int> move_animation;   //移動のアニメーション
+    std::vector<int> move_animation;   //移動のアニメーション
 
-	//アニメーション用
-	const int animation_num[2] = { 0,1 };
-	int animation_count;
-	float animation_time;
+    //アニメーション用
+    const int animation_num[2] = { 0,1 };
+    int animation_count;
+    float animation_time;
 
-	static nokonoko* instance;
+    static nokonoko* instance;
 
-	//向き
-	Vector2D direction;
+    //向き
+    Vector2D direction;
 
-	nokonoko* Kuribo;
+    nokonoko* Kuribo;
 
 public:
 
-	//クリボーの状態
-	eNokonokoState nokonoko_state;
+    //クリボーの状態
+    eNokonokoState nokonoko_state;
 
-	nokonoko();
-	~nokonoko();
+    nokonoko();
+    ~nokonoko();
 
-	virtual void Initialize() override;
-	virtual void Update(float delta_second) override;
-	virtual void Draw(const Vector2D& screen_offset) const override;
-	virtual void Finalize() override;
+    virtual void Initialize() override;
+    virtual void Update(float delta_second) override;
+    virtual void Draw(const Vector2D& screen_offset) const override;
+    virtual void Finalize() override;
 
-	/*virtual void OnHitCollision(GameObject* hit_object) ;*/
+    /*virtual void OnHitCollision(GameObject* hit_object) ;*/
 
-	void SetVelocity(float velo);
+    void SetVelocity(float velo);
 
-	static nokonoko* GetInstance();
+    static nokonoko* GetInstance();
 
 private:
 
-	void Movement(float delta_second);
-	void AnimeCount(float delta_second);
+    void Movement(float delta_second);
+    void AnimeCount(float delta_second);
 };
-

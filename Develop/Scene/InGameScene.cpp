@@ -39,8 +39,6 @@ void InGameScene::Initialize()
 	StageData* Stage = StageData::GetInstance();
 	Stage->Load();
 
-	
-	
 	//マリオの表示
 	player = CreateObject<Player>(Vector2D(100, 403));
 	//クリボーの表示
@@ -95,12 +93,10 @@ eSceneType InGameScene::Update(const float& delta_second)
 	return __super::Update(delta_second);
 }
 
-void InGameScene::Draw() const 
+void InGameScene::Draw() const
 {
 	StageData* Stage = StageData::GetInstance();
 	Stage->Load();
-
-	
 
 	//タイトルUIの描画
 	DrawGraph(340, 10, mario_world, TRUE);
@@ -108,7 +104,6 @@ void InGameScene::Draw() const
 	DrawGraph(100, 10, mario_ui, TRUE);
 
 	//コインの画像
-	
 	DrawGraph(190, 33, kakeru_ui[11], TRUE);     //コイン横の×
 	DrawGraph(210, 34, coin_num_min[0], TRUE);   //コイン10の位の数字
 	DrawGraph(230, 34, coin_num_sec[0], TRUE);   //コイン１の位の数字
@@ -126,55 +121,5 @@ void InGameScene::Finalize()
 
 const eSceneType InGameScene::GetNowSceneType() const
 {
-	return eSceneType ::in_game;
+	return eSceneType::in_game;
 }
-
-//#ifdef D_PIVOT_CENTER
-//
-//
-////当たり判定チェック処理（矩形の中心で当たり判定をとる）
-//void InGameScene::HitCheckObject(GameObjectBase* a, GameObjectBase* b)
-//{
-//	//2つのオブジェクトの距離を取得
-//	Vector2D diff = a->GetLocation() - b->GetLocation();
-//
-//	//2つのオブジェクトの当たり判定の大きさを取得
-//	Vector2D box_size = (a->GetBoxSize() + b->GetBoxSize()) / 2.0f;
-//
-//	//距離より大きさが大きい場合、Hit判定とする
-//	if ((fabs(diff.x) < box_size.x) && (fabsf(diff.y) < box_size.y))
-//	{
-//		if (a->GetType() == b->GetType())
-//		{
-//			return;
-//		}
-//		else
-//		{
-//			//当たったことをオブジェクトに通知する
-//			a->OnHitCollision(b);
-//			b->OnHitCollision(a);
-//		}
-//	}
-//}
-//
-//#else
-//
-////当たり判定チェック処理（左上頂点の座標から当たり判定計算を行う)
-//void Scene::HitCheckObject(GameObjectBase* a, GameObjectBase* b)
-//{
-//	//右下頂点座標を取得する
-//	Vector2D a_lower_right = a->GetLocation() + a->GetBoxSize();
-//	Vector2D b_lower_right = b->GetLocation() + b->GetBoxSize();
-//
-//	//矩形Aと矩形Bの位置関係を調べる
-//	if ((a->GetLocation().x < b_lower_right.x) &&
-//		(a->GetLocation().y < b_lower_right.y) &&
-//		(a_lower_right.x > b->GetLocation().x) &&
-//		(a_lower_right.y > b->GetLocation().y))
-//	{
-//		//オブジェクトにたいしてHit判定を通知する
-//		a->OnHitCollision(b);
-//		b->OnHitCollision(a);
-//	}
-//}
-//#endif // D_PIVOT_CNETER

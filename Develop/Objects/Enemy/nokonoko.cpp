@@ -20,29 +20,26 @@ nokonoko::~nokonoko()
 
 void nokonoko::Initialize()
 {
-	//アニメーション画像の読み込み
-	ResourceManager* rm = ResourceManager::GetInstance();
-	move_animation = rm->GetImages("Resource/images/Enemy/nokonoko.png", 2, 2, 1, 32, 64);
+    //アニメーション画像の読み込み
+    ResourceManager* rm = ResourceManager::GetInstance();
+    move_animation = rm->GetImages("Resource/images/Enemy/nokonoko.png", 2, 2, 1, 32, 64);
 
-	image = move_animation[0];
+    image = move_animation[0];
 
-	//エラーチェック
-	if (image == -1)
-	{
-		throw("nokonokoの画像がありません\n");
-	}
+    //エラーチェック
+    if (image == -1)
+    {
+        throw("nokonokoの画像がありません\n");
+    }
 
-	velocity.x = -0.1;
-
-	type = KURIBO;
-
+    velocity.x = -0.1;
 }
 
 
 void nokonoko::Update(float delta_second)
 {
 	velocity.x = -0.1;
-	location += velocity;
+    location += velocity;
 
 	switch (nokonoko_state)
 	{
@@ -55,7 +52,6 @@ void nokonoko::Update(float delta_second)
 	default:
 		break;
 	}
-
 }
 
 void nokonoko::Draw(const Vector2D& screen_offset) const
