@@ -43,13 +43,7 @@ private:
 
 	eDirectionState now_direction_state;	// 現在進行方向状態
 	eDirectionState next_direction_state;	// 次回進行方向状態
-	int food_count;							// 餌を食べた数
 	float animation_time;					// アニメーション時間
-	//int animation_count;					// アニメーション添字
-	//ePanelID old_panel;						// 前回パネル情報
-	bool is_power_up;						// パワー餌を食べたか？
-	bool is_destroy;						// 死んだ状態になったか？
-
 	// 移動アニメーションの順番
 	const int animation_num[4] = { 1, 2, 3, 2, };
 	const int jump_animation_num[2] = { 1,5 };
@@ -95,11 +89,6 @@ public:
 	virtual void OnHitCollision(GameObjectBase* hit_object) override;
 
 public:
-	/// <summary>
-	/// 餌を食べた数取得
-	/// </summary>
-	/// <returns>餌を食べた数</returns>
-	int GetFoodCount() const;
 
 	/// <summary>
 	/// プレイヤーの状態を取得する
